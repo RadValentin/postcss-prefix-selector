@@ -8,7 +8,11 @@ module.exports = function (options) {
   if (!/\s+$/.test(prefix)) prefix += ' '
   return function (root) {
     root.eachRule(function (rule) {
-      rule.selector = prefix + rule.selector
+      // pretty sure this splitting breaks for certain selectors
+      var selectors = rule.selector.split(/\s*,\s*/g)
+      rule.selector = selectors.map(function (selector) {
+        return prefix + selector
+      }).join(', ')
     })
   }
 }
