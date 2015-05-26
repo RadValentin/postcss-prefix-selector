@@ -1,7 +1,7 @@
 {
   "name": "postcss-prefix-selector",
   "description": "Prefix all CSS rules with a selector",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
   "license": "MIT",
   "repository": "jonathanong/postcss-prefix-selector",
