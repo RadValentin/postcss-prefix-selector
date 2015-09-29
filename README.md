@@ -23,6 +23,23 @@ var out = postcss().use(prefix({
 console.log(out)
 ```
 
+## Options
+
+It's possible to avoid prefixing some selectors with the option `exclude` which take an array of selectors in parameter.
+
+```js
+var css = '.a {} \nhtml{} \n.b{}'
+
+var prefix = require('postcss-prefix-selector')
+
+var out = postcss().use(prefix({
+  prefix: '.some-selector ', // <--- notice the traililng space!
+  exclude: ['html', '.b']
+})).process(css).css
+
+console.log(out)
+```
+
 [gitter-image]: https://badges.gitter.im/jonathanong/postcss-prefix-selector.png
 [gitter-url]: https://gitter.im/jonathanong/postcss-prefix-selector
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square

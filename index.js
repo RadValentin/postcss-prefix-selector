@@ -11,6 +11,9 @@ module.exports = function (options) {
       // pretty sure this splitting breaks for certain selectors
       var selectors = rule.selector.split(/\s*,\s*/g)
       rule.selector = selectors.map(function (selector) {
+        if (options.exclude && ~options.exclude.indexOf(selector)) {
+          return selector;
+        }
         return prefix + selector
       }).join(', ')
     })
