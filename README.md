@@ -11,34 +11,55 @@
 
 Prefix every rule with a selector.
 
-```js
-var css = '.a {} \n.b{}'
+## Installation
 
-var prefix = require('postcss-prefix-selector')
-
-var out = postcss().use(prefix({
-  prefix: '.some-selector ' // <--- notice the traililng space!
-})).process(css).css
-
-console.log(out)
+```console
+$ npm install postcss-prefix-selector
 ```
 
-## Options
-
-It's possible to avoid prefixing some selectors with the option `exclude` which take an array of selectors in parameter.
+## Usage
 
 ```js
-var css = '.a {} \nhtml{} \n.b{}'
-
 var prefix = require('postcss-prefix-selector')
+
+// css to be processed
+var css = fs.readFileSync("input.css", "utf8")
 
 var out = postcss().use(prefix({
   prefix: '.some-selector ', // <--- notice the traililng space!
-  exclude: ['html', '.b']
+  exclude: ['.c']
 })).process(css).css
-
-console.log(out)
 ```
+
+Using this `input.css`:
+
+```css
+.a, .b {
+  color: aqua;
+}
+
+.c {
+  color: coral;
+}
+```
+
+you will get:
+
+```css
+.some-selector .a, .some-selector .b {
+  color: aqua;
+}
+
+.c {
+  color: coral;
+}
+```
+
+
+## Options
+
+It's possible to avoid prefixing some selectors by using the `exclude` option which takes an array of selectors as a parameter.
+
 
 [gitter-image]: https://badges.gitter.im/jonathanong/postcss-prefix-selector.png
 [gitter-url]: https://gitter.im/jonathanong/postcss-prefix-selector
