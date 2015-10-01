@@ -20,7 +20,8 @@
   "keywords": [
     "postcss",
     "prefix",
-    "selectors"
+    "selectors",
+    "postcss-plugin"
   ],
   "files": [
     "index.js"
