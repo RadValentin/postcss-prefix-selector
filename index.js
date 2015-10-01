@@ -8,9 +8,13 @@ module.exports = function (options) {
   if (!/\s+$/.test(prefix)) prefix += ' '
   return function (root) {
     root.walkRules(function (rule) {
+      if (rule.parent && rule.parent.name == 'keyframes') {
+        return
+      }
+
       rule.selectors = rule.selectors.map(function (selector) {
         if (options.exclude && ~options.exclude.indexOf(selector)) {
-          return selector;
+          return selector
         }
         return prefix + selector
       })

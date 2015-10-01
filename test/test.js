@@ -31,6 +31,15 @@ it('should avoid prefixing excluded selectors', function () {
   assert(~out.indexOf('.hello .a'))
   assert(~out.indexOf('.hello .b'))
   assert(~out.indexOf('.hello .c'))
-  assert(out.indexOf('.hello body'))
-  assert(out.indexOf('.hello .a *:not(.b)'))
+  assert(!~out.indexOf('.hello body'))
+  assert(!~out.indexOf('.hello .a *:not(.b)'))
+})
+
+it('should skip @keyframes selectors', function () {
+  var out = postcss().use(prefix({
+    prefix: '.hello '
+  })).process('@keyframes anim {from {} to {}}').css
+
+  assert(!~out.indexOf('.hello from'))
+  assert(!~out.indexOf('.hello to'))
 })
