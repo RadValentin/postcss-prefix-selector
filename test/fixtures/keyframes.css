@@ -1,0 +1,17 @@
+.a {
+  color: coral;
+  animation: glow 1s linear infinite alternate;
+}
+
+.b {
+  color: deepskyblue;
+}
+
+@keyframes glow {
+  from {
+    color: coral;
+  }
+  to {
+    color: red;
+  }
+}
