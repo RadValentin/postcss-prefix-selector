@@ -26,7 +26,7 @@ var prefix = require('postcss-prefix-selector')
 var css = fs.readFileSync("input.css", "utf8")
 
 var out = postcss().use(prefix({
-  prefix: '.some-selector ', // <--- notice the traililng space!
+  prefix: '.some-selector',
   exclude: ['.c']
 })).process(css).css
 ```

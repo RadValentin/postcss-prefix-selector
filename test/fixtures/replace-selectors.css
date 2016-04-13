@@ -1,0 +1,39 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+}
+
+html .friend {
+  margin: 0;
+  padding: 0;
+}
+
+html.friend {
+  margin: 0;
+  padding: 0;
+}
+
+html body.friend {
+  margin: 0;
+  padding: 0;
+}
+
+body .friend {
+  margin: 0;
+  padding: 0;
+}
+
+body.friend {
+  margin: 0;
+  padding: 0;
+}
