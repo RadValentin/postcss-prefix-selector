@@ -37,3 +37,18 @@ body.friend {
   margin: 0;
   padding: 0;
 }
+
+html:after {
+  margin: 0;
+  padding: 0;
+}
+
+body:after {
+  margin: 0;
+  padding: 0;
+}
+
+html body:after {
+  margin: 0;
+  padding: 0;
+}

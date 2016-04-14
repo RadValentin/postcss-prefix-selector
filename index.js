@@ -25,6 +25,11 @@ module.exports = function (options) {
           return prefix
         }
 
+        if (/^:/.test(selector)) {
+          // ensure there is no space for pseudo element selectors
+          return prefix + selector
+        }
+
         return prefix + ' ' + selector
       })
     })
