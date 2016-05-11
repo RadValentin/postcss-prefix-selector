@@ -52,3 +52,13 @@ html body:after {
   margin: 0;
   padding: 0;
 }
+
+.friend body {
+    margin: 0;
+    padding: 0;
+}
+
+.friend body:after {
+    margin: 0;
+    padding: 0;
+}

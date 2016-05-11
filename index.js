@@ -25,6 +25,12 @@ module.exports = function (options) {
           return prefix
         }
 
+        if (selector.indexOf(' body') >= 0) {
+          // there are cases where body might part of a decendant selector, so we do a replace instead
+          selector = selector.replace('body', prefix);
+          return  selector
+        }
+
         if (/^:/.test(selector)) {
           // ensure there is no space for pseudo element selectors
           return prefix + selector
