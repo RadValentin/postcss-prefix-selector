@@ -26,9 +26,9 @@ module.exports = function (options) {
         }
 
         if (selector.indexOf(' body') >= 0) {
-          // there are cases where body might part of a decendant selector, so we do a replace instead
+          // there are cases where body might be a part of a decendant selector, so we do a replace instead
           selector = selector.replace('body', prefix);
-          return  selector
+          return selector;
         }
 
         if (/^:/.test(selector)) {
