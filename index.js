@@ -31,6 +31,12 @@ module.exports = function (options) {
           return selector;
         }
 
+        if (/^.ad-container/.test(selector)) {
+          // this is a HACK
+          selector = selector.replace('.ad-container', '.ad-container ' + prefix);
+          return selector;
+        }
+
         if (/^:/.test(selector)) {
           // ensure there is no space for pseudo element selectors
           return prefix + selector
