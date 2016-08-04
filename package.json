@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "istanbul": "0",
-    "mocha": "2"
+    "mocha": "3.0.1"
   },
   "scripts": {
     "test": "mocha",
