@@ -1,0 +1,24 @@
+body.hello {
+  margin: 0;
+  padding: 0;
+}
+
+.hello .a, .hello .b {
+  color: red;
+}
+
+.hello .a *:not(.b) {
+  text-transform: uppercase;
+}
+
+.hello .c {
+  font-size: 10px;
+}
+
+.hello .class-a {
+  color: coral;
+}
+
+.hello .class-b {
+  color: deepskyblue;
+}

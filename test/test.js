@@ -46,6 +46,23 @@ it('should skip @keyframes selectors', function () {
   assert.equal(out, expected)
 })
 
+it('should support an additional callback for prefix transformation', function () {
+  var out = postcss().use(prefix({
+    prefix: '.hello',
+    transform: function (prefix, selector, prefixAndSelector) {
+      if (selector === 'body') {
+        return 'body' + prefix
+      } else {
+        return prefixAndSelector
+      }
+    }
+  })).process(getFixtureContents('transform.css')).css
+
+  var expected = getFixtureContents('transform.expected.css')
+
+  assert.equal(out, expected)
+})
+
 function getFixtureContents(name) {
   return fs.readFileSync('test/fixtures/' + name, 'utf8').trim()
 }
