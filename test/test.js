@@ -7,7 +7,7 @@ var prefix = require('..')
 
 it('should prefix a selector', function () {
   var out = postcss().use(prefix({
-    prefix: '.hello '
+    prefix: '.hello'
   })).process(getFixtureContents('single-selector.css')).css
 
   var expected = getFixtureContents('single-selector.expected.css')
@@ -17,7 +17,7 @@ it('should prefix a selector', function () {
 
 it('should prefix a group of selectors', function () {
   var out = postcss().use(prefix({
-    prefix: '.hello '
+    prefix: '.hello'
   })).process(getFixtureContents('group-selectors.css')).css
 
   var expected = getFixtureContents('group-selectors.expected.css')
@@ -27,7 +27,7 @@ it('should prefix a group of selectors', function () {
 
 it('should avoid prefixing excluded selectors', function () {
   var out = postcss().use(prefix({
-    prefix: '.hello ',
+    prefix: '.hello',
     exclude: ['body', '.a *:not(.b)', /class-/]
   })).process(getFixtureContents('exclude-selectors.css')).css
 
@@ -38,10 +38,20 @@ it('should avoid prefixing excluded selectors', function () {
 
 it('should skip @keyframes selectors', function () {
   var out = postcss().use(prefix({
-    prefix: '.hello '
+    prefix: '.hello'
   })).process(getFixtureContents('keyframes.css')).css
 
   var expected = getFixtureContents('keyframes.expected.css')
+
+  assert.equal(out, expected)
+})
+
+it('should replace selectors and combinators that should not be prefixed', function () {
+  var out = postcss().use(prefix({
+    prefix: '.hello'
+})).process(getFixtureContents('replace-selectors.css')).css
+
+  var expected = getFixtureContents('replace-selectors.expected.css')
 
   assert.equal(out, expected)
 })

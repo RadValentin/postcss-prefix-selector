@@ -1,0 +1,64 @@
+.hello {
+  margin: 0;
+  padding: 0;
+}
+
+.hello {
+  margin: 0;
+  padding: 0;
+}
+
+.hello {
+  margin: 0;
+  padding: 0;
+}
+
+.hello .friend {
+  margin: 0;
+  padding: 0;
+}
+
+.hello .friend {
+  margin: 0;
+  padding: 0;
+}
+
+.hello .friend {
+  margin: 0;
+  padding: 0;
+}
+
+.hello .friend {
+  margin: 0;
+  padding: 0;
+}
+
+.hello .friend {
+  margin: 0;
+  padding: 0;
+}
+
+.hello:after {
+  margin: 0;
+  padding: 0;
+}
+
+.hello:after {
+  margin: 0;
+  padding: 0;
+}
+
+.hello:after {
+  margin: 0;
+  padding: 0;
+}
+
+.friend .hello {
+    margin: 0;
+    padding: 0;
+}
+
+.friend .hello:after {
+    margin: 0;
+    padding: 0;
+}

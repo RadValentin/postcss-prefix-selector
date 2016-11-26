@@ -3,9 +3,8 @@ var assert = require('assert')
 
 module.exports = function (options) {
   assert(options)
-  var prefix = options.prefix
+  var prefix = options.prefix.trim() // trim as we no longer need a space in the options
   assert(prefix)
-  if (!/\s+$/.test(prefix)) prefix += ' '
   return function (root) {
     root.walkRules(function (rule) {
       if (rule.parent && rule.parent.name == 'keyframes') {
@@ -13,10 +12,37 @@ module.exports = function (options) {
       }
 
       rule.selectors = rule.selectors.map(function (selector) {
+        // IF THE SELECTOR IS EXCLUDED, DO EARLY RETURNS
         if (options.exclude && excludeSelector(selector, options.exclude)) {
           return selector
         }
-        return prefix + selector
+
+        // REPLACE DESCENDANT COMBINATORS THAT CAN'T BE PREFIXED
+        selector = selector.replace(/^html body|^html|^body/, '').trim()
+
+        if (!selector.length) {
+          // avoid double spaces when selector length is zero
+          return prefix
+        }
+
+        if (selector.indexOf(' body') >= 0) {
+          // there are cases where body might be a part of a decendant selector, so we do a replace instead
+          selector = selector.replace('body', prefix);
+          return selector;
+        }
+
+        if (/^.ad-container/.test(selector)) {
+          // this is a HACK
+          selector = selector.replace('.ad-container', '.ad-container ' + prefix);
+          return selector;
+        }
+
+        if (/^:/.test(selector)) {
+          // ensure there is no space for pseudo element selectors
+          return prefix + selector
+        }
+
+        return prefix + ' ' + selector
       })
     })
   }
