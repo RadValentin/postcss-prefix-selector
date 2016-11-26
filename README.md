@@ -61,18 +61,14 @@ you will get:
 It's possible to avoid prefixing some selectors by using the `exclude` option which takes an array of selectors as a parameter.
 
 
-[gitter-image]: https://badges.gitter.im/jonathanong/postcss-prefix-selector.png
-[gitter-url]: https://gitter.im/jonathanong/postcss-prefix-selector
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/postcss-prefix-selector
-[github-tag]: http://img.shields.io/github/tag/jonathanong/postcss-prefix-selector.svg?style=flat-square
-[github-url]: https://github.com/jonathanong/postcss-prefix-selector/tags
-[travis-image]: https://img.shields.io/travis/jonathanong/postcss-prefix-selector.svg?style=flat-square
-[travis-url]: https://travis-ci.org/jonathanong/postcss-prefix-selector
+[travis-image]: https://img.shields.io/travis/RadValentin/postcss-prefix-selector.svg?style=flat-square
+[travis-url]: https://travis-ci.org/RadValentin/postcss-prefix-selector
 [coveralls-image]: https://img.shields.io/coveralls/jonathanong/postcss-prefix-selector.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/jonathanong/postcss-prefix-selector
-[david-image]: http://img.shields.io/david/jonathanong/postcss-prefix-selector.svg?style=flat-square
-[david-url]: https://david-dm.org/jonathanong/postcss-prefix-selector
+[david-image]: http://img.shields.io/david/RadValentin/postcss-prefix-selector.svg?style=flat-square
+[david-url]: https://david-dm.org/RadValentin/postcss-prefix-selector
 [license-image]: http://img.shields.io/npm/l/postcss-prefix-selector.svg?style=flat-square
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/postcss-prefix-selector.svg?style=flat-square
