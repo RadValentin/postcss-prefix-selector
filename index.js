@@ -3,9 +3,14 @@ var assert = require('assert')
 
 module.exports = function (options) {
   assert(options)
-  var prefix = options.prefix
+  var prefix = options.prefix 
   assert(prefix)
-  if (!/\s+$/.test(prefix)) prefix += ' '
+  
+  var prefixWithSpace = /\s+$/.test(prefix) ? prefix : prefix + ' '
+  var transform = options.transform || function(prefix, selector, both) {
+    return both
+  }
+
   return function (root) {
     root.walkRules(function (rule) {
       if (rule.parent && rule.parent.name == 'keyframes') {
@@ -16,7 +21,7 @@ module.exports = function (options) {
         if (options.exclude && excludeSelector(selector, options.exclude)) {
           return selector
         }
-        return prefix + selector
+        return transform(prefix, selector, prefixWithSpace + selector)
       })
     })
   }
@@ -29,5 +34,5 @@ function excludeSelector(selector, excludeArr) {
     } else {
       return selector === excludeRule
     }
-  });
+  })
 }

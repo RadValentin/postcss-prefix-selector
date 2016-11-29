@@ -27,13 +27,26 @@ var css = fs.readFileSync("input.css", "utf8")
 
 var out = postcss().use(prefix({
   prefix: '.some-selector ', // <--- notice the traililng space!
-  exclude: ['.c']
+  exclude: ['.c'],
+
+  // Optional transform callback for case-by-case overrides 
+  transform: function (prefix, selector, prefixAndSelector) {
+    if (selector === 'body') {
+      return 'body.' + prefix;
+    } else {
+      return prefixAndSelector
+    }
+  }
 })).process(css).css
 ```
 
 Using this `input.css`:
 
 ```css
+body {
+  background: red;
+}
+
 .a, .b {
   color: aqua;
 }
@@ -46,6 +59,10 @@ Using this `input.css`:
 you will get:
 
 ```css
+body.some-selector {
+  background: red;
+}
+
 .some-selector .a, .some-selector .b {
   color: aqua;
 }
@@ -59,6 +76,8 @@ you will get:
 ## Options
 
 It's possible to avoid prefixing some selectors by using the `exclude` option which takes an array of selectors as a parameter.
+
+In cases where you may want to use the prefix differently for different selectors, it is also possible to customize prefixing based on the un-prefixed selector by adding the `transform` option. 
 
 
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square
