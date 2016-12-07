@@ -20,7 +20,7 @@ $ npm install postcss-prefix-selector
 ## Usage
 
 ```js
-var prefixer = require('postcss-prefix-selector')
+const prefixer = require('postcss-prefix-selector')
 
 // css to be processed
 const css = fs.readFileSync("input.css", "utf8")
