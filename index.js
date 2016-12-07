@@ -1,38 +1,34 @@
-
-var assert = require('assert')
-
-module.exports = function (options) {
-  assert(options)
-  var prefix = options.prefix 
-  assert(prefix)
-  
-  var prefixWithSpace = /\s+$/.test(prefix) ? prefix : prefix + ' '
-  var transform = options.transform || function(prefix, selector, both) {
-    return both
-  }
+module.exports = function postcssPrefixSelector(options) {
+  const prefix = options.prefix;
+  const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
 
   return function (root) {
-    root.walkRules(function (rule) {
-      if (rule.parent && rule.parent.name == 'keyframes') {
-        return
+    root.walkRules((rule) => {
+      if (rule.parent && rule.parent.name === 'keyframes') {
+        return;
       }
 
-      rule.selectors = rule.selectors.map(function (selector) {
+      rule.selectors = rule.selectors.map((selector) => {
         if (options.exclude && excludeSelector(selector, options.exclude)) {
-          return selector
+          return selector;
         }
-        return transform(prefix, selector, prefixWithSpace + selector)
-      })
-    })
-  }
-}
+
+        if (options.transform) {
+          return options.transform(prefix, selector, prefixWithSpace + selector);
+        }
+
+        return prefixWithSpace + selector;
+      });
+    });
+  };
+};
 
 function excludeSelector(selector, excludeArr) {
-  return excludeArr.some(function(excludeRule) {
+  return excludeArr.some((excludeRule) => {
     if (excludeRule instanceof RegExp) {
-      return excludeRule.test(selector)
-    } else {
-      return selector === excludeRule
+      return excludeRule.test(selector);
     }
-  })
+
+    return selector === excludeRule;
+  });
 }

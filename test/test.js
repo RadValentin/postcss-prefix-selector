@@ -1,68 +1,66 @@
+const postcss = require('postcss');
+const assert = require('assert');
+const fs = require('fs');
+const prefixer = require('../index.js');
 
-var postcss = require('postcss')
-var assert = require('assert')
-var fs = require('fs')
-
-var prefix = require('..')
-
-it('should prefix a selector', function () {
-  var out = postcss().use(prefix({
-    prefix: '.hello '
-  })).process(getFixtureContents('single-selector.css')).css
-
-  var expected = getFixtureContents('single-selector.expected.css')
-
-  assert.equal(out, expected)
-})
-
-it('should prefix a group of selectors', function () {
-  var out = postcss().use(prefix({
-    prefix: '.hello '
-  })).process(getFixtureContents('group-selectors.css')).css
-
-  var expected = getFixtureContents('group-selectors.expected.css')
-
-  assert.equal(out, expected)
-})
-
-it('should avoid prefixing excluded selectors', function () {
-  var out = postcss().use(prefix({
+it('should prefix a selector', () => {
+  const out = postcss().use(prefixer({
     prefix: '.hello ',
-    exclude: ['body', '.a *:not(.b)', /class-/]
-  })).process(getFixtureContents('exclude-selectors.css')).css
+  })).process(getFixtureContents('single-selector.css')).css;
 
-  var expected = getFixtureContents('exclude-selectors.expected.css')
+  const expected = getFixtureContents('single-selector.expected.css');
 
-  assert.equal(out, expected)
-})
+  assert.equal(out, expected);
+});
 
-it('should skip @keyframes selectors', function () {
-  var out = postcss().use(prefix({
-    prefix: '.hello '
-  })).process(getFixtureContents('keyframes.css')).css
+it('should prefix a group of selectors', () => {
+  const out = postcss().use(prefixer({
+    prefix: '.hello ',
+  })).process(getFixtureContents('group-selectors.css')).css;
 
-  var expected = getFixtureContents('keyframes.expected.css')
+  const expected = getFixtureContents('group-selectors.expected.css');
 
-  assert.equal(out, expected)
-})
+  assert.equal(out, expected);
+});
 
-it('should support an additional callback for prefix transformation', function () {
-  var out = postcss().use(prefix({
+it('should avoid prefixing excluded selectors', () => {
+  const out = postcss().use(prefixer({
+    prefix: '.hello ',
+    exclude: ['body', '.a *:not(.b)', /class-/],
+  })).process(getFixtureContents('exclude-selectors.css')).css;
+
+  const expected = getFixtureContents('exclude-selectors.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should skip @keyframes selectors', () => {
+  const out = postcss().use(prefixer({
+    prefix: '.hello ',
+  })).process(getFixtureContents('keyframes.css')).css;
+
+  const expected = getFixtureContents('keyframes.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should support an additional callback for prefix transformation', () => {
+  const out = postcss().use(prefixer({
     prefix: '.hello',
-    transform: function (prefix, selector, prefixAndSelector) {
+    transform(prefix, selector, prefixedSelector) {
       if (selector === 'body') {
-        return 'body' + prefix
-      } else {
-        return prefixAndSelector
+        return `body${prefix}`;
       }
-    }
-  })).process(getFixtureContents('transform.css')).css
 
-  var expected = getFixtureContents('transform.expected.css')
+      return prefixedSelector;
+    },
+  })).process(getFixtureContents('transform.css')).css;
 
-  assert.equal(out, expected)
-})
+  const expected = getFixtureContents('transform.expected.css');
+
+  assert.equal(out, expected);
+});
 
 function getFixtureContents(name) {
-  return fs.readFileSync('test/fixtures/' + name, 'utf8').trim()
+  return fs.readFileSync(`test/fixtures/${name}`, 'utf8').trim();
 }
