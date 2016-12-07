@@ -26,7 +26,7 @@ const prefixer = require('postcss-prefix-selector')
 const css = fs.readFileSync("input.css", "utf8")
 
 const out = postcss().use(prefixer({
-  prefix: '.some-selector ', // <--- notice the traililng space!
+  prefix: '.some-selector',
   exclude: ['.c'],
 
   // Optional transform callback for case-by-case overrides
@@ -75,9 +75,8 @@ body.some-selector {
 
 ## Options
 
-It's possible to avoid prefixing some selectors by using the `exclude` option which takes an array of selectors as a parameter.
-
-In cases where you may want to use the prefix differently for different selectors, it is also possible to customize prefixing based on the un-prefixed selector by adding the `transform` option.
+- `exclude` - It's possible to avoid prefixing some selectors by passing an array of selectors (strings or regular expressions).
+- `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
 
 
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square
