@@ -3,8 +3,11 @@
   "description": "Prefix all CSS rules with a selector",
   "version": "1.5.0",
   "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
+  "contributors": [
+    "Valentin Radulescu <valentin@radulescu.me (https://valentin.io)"
+  ],
   "license": "MIT",
-  "repository": "jonathanong/postcss-prefix-selector",
+  "repository": "RadValentin/postcss-prefix-selector",
   "dependencies": {
     "postcss": "^5.0.8"
   },
