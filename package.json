@@ -9,17 +9,17 @@
     "postcss": "^5.0.8"
   },
   "devDependencies": {
+    "husky": "^0.13.2",
     "istanbul": "~0.4.5",
     "lint-staged": "^3.3.1",
     "mocha": "~3.2.0",
-    "pre-commit": "^1.2.2",
     "prettier": "^0.21.0"
   },
   "scripts": {
     "test": "mocha",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
-    "lint:staged": "lint-staged"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": [
@@ -27,7 +27,6 @@
       "git add"
     ]
   },
-  "pre-commit": "lint-staged",
   "keywords": [
     "postcss",
     "prefix",
