@@ -14,7 +14,7 @@
   "devDependencies": {
     "husky": "^0.13.2",
     "istanbul": "~0.4.5",
-    "lint-staged": "^3.3.1",
+    "lint-staged": "^3.4.0",
     "mocha": "~3.2.0",
     "prettier": "^0.22.0"
   },
