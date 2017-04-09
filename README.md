@@ -1,13 +1,13 @@
 
 # postcss-prefix-selector
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/RadValentin/postcss-prefix-selector.svg)](https://greenkeeper.io/)
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 [![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
-[![Gittip][gittip-image]][gittip-url]
 
 Prefix every rule with a selector.
 
@@ -91,5 +91,3 @@ body.some-selector {
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/postcss-prefix-selector.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/postcss-prefix-selector
-[gittip-image]: https://img.shields.io/gratipay/jonathanong.svg?style=flat-square
-[gittip-url]: https://gratipay.com/jonathanong/
