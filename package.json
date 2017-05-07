@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": "RadValentin/postcss-prefix-selector",
   "dependencies": {
-    "postcss": "^5.0.8"
+    "postcss": "^6.0.0"
   },
   "devDependencies": {
     "husky": "^0.13.3",
