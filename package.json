@@ -15,7 +15,7 @@
     "husky": "^0.13.3",
     "istanbul": "~0.4.5",
     "lint-staged": "^3.4.0",
-    "mocha": "~3.3.0",
+    "mocha": "~3.4.1",
     "prettier": "^1.1.0"
   },
   "scripts": {
