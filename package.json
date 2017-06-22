@@ -12,7 +12,7 @@
     "postcss": "^6.0.0"
   },
   "devDependencies": {
-    "husky": "^0.13.3",
+    "husky": "^0.14.0",
     "istanbul": "~0.4.5",
     "lint-staged": "^3.4.0",
     "mocha": "~3.3.0",
