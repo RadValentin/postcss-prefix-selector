@@ -1,4 +1,3 @@
-
 # postcss-prefix-selector
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/RadValentin/postcss-prefix-selector.svg)](https://greenkeeper.io/)
@@ -9,13 +8,24 @@
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 
-Prefix every rule with a selector.
+> Prefix every rule with a selector
 
-## Installation
+## Table of Contents
+
+- [Install](#install)
+- [Usage](#usage)
+- [Options](#options)
+- [Maintainer](#maintainer)
+- [Contribute](#contribute)
+- [License](#license)
+
+## Install
 
 ```console
 $ npm install postcss-prefix-selector
 ```
+
+This project uses [node](https://nodejs.org) and [npm](https://npmjs.com).
 
 ## Usage
 
@@ -56,7 +66,7 @@ body {
 }
 ```
 
-you will get:
+You will get:
 
 ```css
 body.some-selector {
@@ -77,6 +87,16 @@ body.some-selector {
 
 - `exclude` - It's possible to avoid prefixing some selectors by passing an array of selectors (strings or regular expressions).
 - `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
+
+## Maintainer
+
+This project is maintained by [@RadValentin](https://github.com/RadValentin). If you have any questions, feel free to ping me.
+
+## Contribute
+
+Please contribute! If you have any questions or bugs, [open an issue](https://github.com/RadValentin/postcss-prefix-selector). Or, open a pull request with a fix.
+
+This project uses Mocha. If you submit a PR, please add appropriate tests and make sure that everything is green for your branch.
 
 ## License
 
