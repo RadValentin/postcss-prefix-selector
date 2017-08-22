@@ -78,6 +78,9 @@ body.some-selector {
 - `exclude` - It's possible to avoid prefixing some selectors by passing an array of selectors (strings or regular expressions).
 - `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
 
+## License
+
+[MIT](LICENSE) © 2015-2017 Jonathan Ong.
 
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/postcss-prefix-selector
