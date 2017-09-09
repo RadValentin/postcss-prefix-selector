@@ -8,6 +8,8 @@
   ],
   "license": "MIT",
   "repository": "RadValentin/postcss-prefix-selector",
+  "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
+  "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
   "dependencies": {
     "postcss": "^6.0.0"
   },
@@ -34,7 +36,10 @@
     "postcss",
     "prefix",
     "selectors",
-    "postcss-plugin"
+    "postcss-plugin",
+    "css",
+    "selector",
+    "plugin"
   ],
   "files": [
     "index.js"
