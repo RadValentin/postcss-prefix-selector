@@ -1,6 +1,6 @@
 # postcss-prefix-selector
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/RadValentin/postcss-prefix-selector.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
@@ -8,12 +8,13 @@
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 
-> Prefix every rule with a selector
+> Prefix every CSS selector with a custom namespace `.a => .prefix .a`
 
 ## Table of Contents
 
 - [Install](#install)
-- [Usage](#usage)
+- [Usage with PostCSS](#usage-with-postcss)
+- [Usage with Webpack](#usage-with-webpack)
 - [Options](#options)
 - [Maintainer](#maintainer)
 - [Contribute](#contribute)
@@ -25,9 +26,7 @@
 $ npm install postcss-prefix-selector
 ```
 
-This project uses [node](https://nodejs.org) and [npm](https://npmjs.com).
-
-## Usage
+## Usage with PostCSS
 
 ```js
 const prefixer = require('postcss-prefix-selector')
@@ -50,7 +49,7 @@ const out = postcss().use(prefixer({
 })).process(css).css
 ```
 
-Using this `input.css`:
+Using the options above and the CSS below...
 
 ```css
 body {
@@ -66,7 +65,7 @@ body {
 }
 ```
 
-You will get:
+You will get the following output
 
 ```css
 body.some-selector {
@@ -82,15 +81,46 @@ body.some-selector {
 }
 ```
 
+## Usage with webpack
+
+Use it like you'd use any other PostCSS plugin. If you also have `autoprefixer` in your webpack config then make sure that `postcss-prefix-selector` is called first. This is needed to avoid running the prefixer twice on both standard selectors and vendor specific ones (ex: `@keyframes` and `@webkit-keyframes`).
+
+```js
+const prefixer = require('postcss-prefix-selector');
+
+module: {
+  rules: [{
+    test: /\.css$/,
+    use: [
+      require.resolve('style-loader'),
+      require.resolve('css-loader'),
+      {
+        loader: require.resolve('postcss-loader'),
+        options: {
+          plugins: () => [
+            prefixer({
+              prefix: '.my-prefix'
+            }),
+            autoprefixer({
+              browsers: ['last 4 versions']
+            })
+          ]
+        }
+      }
+    ]
+  }]
+}
+```
 
 ## Options
 
+- `prefix` - This string is added before every CSS selector.
 - `exclude` - It's possible to avoid prefixing some selectors by passing an array of selectors (strings or regular expressions).
 - `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
 
 ## Maintainer
 
-This project is maintained by [@RadValentin](https://github.com/RadValentin). If you have any questions, feel free to ping me.
+This project was originally created by [@jongleberry](https://github.com/jonathanong) and is being maintained by [@RadValentin](https://github.com/RadValentin). If you have any questions, feel free to ping the latter.
 
 ## Contribute
 
@@ -102,6 +132,8 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 
 [MIT](LICENSE) © 2015-2017 Jonathan Ong.
 
+[greenkeeper-image]: https://badges.greenkeeper.io/RadValentin/postcss-prefix-selector.svg
+[greenkeeper-url]: https://greenkeeper.io/
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/postcss-prefix-selector
 [travis-image]: https://img.shields.io/travis/RadValentin/postcss-prefix-selector.svg?style=flat-square
