@@ -5,4 +5,7 @@ node_js:
   - 4
 language: node_js
 script: "npm run-script test-travis"
+before_install: yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
 after_script: "npm install coveralls@2 && cat ./coverage/lcov.info | coveralls"
+after_script: greenkeeper-lockfile-upload
