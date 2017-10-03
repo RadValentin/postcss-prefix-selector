@@ -124,7 +124,7 @@ This project was originally created by [@jongleberry](https://github.com/jonatha
 
 ## Contribute
 
-Please contribute! If you have any questions or bugs, [open an issue](https://github.com/RadValentin/postcss-prefix-selector). Or, open a pull request with a fix.
+Please contribute! If you have any questions or bugs, [open an issue](https://github.com/RadValentin/postcss-prefix-selector/issues/new). Or, open a pull request with a fix.
 
 This project uses Mocha. If you submit a PR, please add appropriate tests and make sure that everything is green for your branch.
 
