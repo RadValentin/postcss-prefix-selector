@@ -3,7 +3,8 @@ body {
   padding: 0;
 }
 
-.a, .b {
+.a,
+.b {
   color: red;
 }
 
