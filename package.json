@@ -18,19 +18,24 @@
     "istanbul": "~0.4.5",
     "lint-staged": "^7.0.0",
     "mocha": "~4.1.0",
-    "prettier": "^1.1.0"
+    "prettier": "^1.11.1"
   },
   "scripts": {
     "test": "mocha",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "lint": "prettier --write '**/*.{js,css}'"
   },
   "lint-staged": {
     "*.js": [
-      "prettier --single-quote --write",
+      "prettier --write",
       "git add"
     ]
+  },
+  "prettier": {
+    "printWidth": 80,
+    "singleQuote": true
   },
   "keywords": [
     "postcss",
