@@ -3,7 +3,8 @@ body.hello {
   padding: 0;
 }
 
-.hello .a, .hello .b {
+.hello .a,
+.hello .b {
   color: red;
 }
 

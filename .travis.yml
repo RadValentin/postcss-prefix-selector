@@ -1,8 +1,9 @@
 cache: yarn
 node_js:
-  - stable
+  - node
+  - 8
+  - 7
   - 6
-  - 4
 language: node_js
 script: "npm run-script test-travis"
 before_install: yarn global add greenkeeper-lockfile@1

@@ -1,3 +1,4 @@
-.hello .a, .hello .b {
+.hello .a,
+.hello .b {
   color: coral;
 }
