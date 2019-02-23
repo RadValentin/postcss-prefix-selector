@@ -41,7 +41,7 @@ const out = postcss().use(prefixer({
   // Optional transform callback for case-by-case overrides
   transform: function (prefix, selector, prefixedSelector) {
     if (selector === 'body') {
-      return 'body.' + prefix;
+      return 'body' + prefix;
     } else {
       return prefixedSelector;
     }
