@@ -1,7 +1,7 @@
 {
   "name": "postcss-prefix-selector",
   "description": "Prefix all CSS rules with a selector",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
   "contributors": [
     "Valentin Radulescu <valentin@radulescu.me> (https://valentin.io)"
@@ -16,7 +16,7 @@
   "devDependencies": {
     "husky": "^1.0.0",
     "istanbul": "~0.4.5",
-    "lint-staged": "^7.0.0",
+    "lint-staged": "^8.0.0",
     "mocha": "~6.0.0",
     "prettier": "^1.11.1"
   },
