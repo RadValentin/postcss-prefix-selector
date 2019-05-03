@@ -4,7 +4,14 @@ module.exports = function postcssPrefixSelector(options) {
 
   return function(root) {
     root.walkRules(rule => {
-      if (rule.parent && rule.parent.name === 'keyframes') {
+      const keyframeRules = [
+        'keyframes',
+        '-webkit-keyframes',
+        '-moz-keyframes',
+        '-o-keyframes'
+      ];
+
+      if (rule.parent && keyframeRules.includes(rule.parent.name)) {
         return;
       }
 
