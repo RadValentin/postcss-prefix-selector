@@ -15,3 +15,30 @@
     color: red;
   }
 }
+
+@-webkit-keyframes glow {
+  from {
+    color: coral;
+  }
+  to {
+    color: red;
+  }
+}
+
+@-moz-keyframes glow {
+  from {
+    color: coral;
+  }
+  to {
+    color: red;
+  }
+}
+
+@-o-keyframes glow {
+  from {
+    color: coral;
+  }
+  to {
+    color: red;
+  }
+}
