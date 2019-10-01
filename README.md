@@ -130,7 +130,7 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 
 ## License
 
-[MIT](LICENSE) © 2015-2017 Jonathan Ong.
+[MIT](LICENSE) © 2015-2019 Jonathan Ong.
 
 [greenkeeper-image]: https://badges.greenkeeper.io/RadValentin/postcss-prefix-selector.svg
 [greenkeeper-url]: https://greenkeeper.io/
