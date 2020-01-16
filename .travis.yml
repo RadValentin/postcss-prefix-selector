@@ -1,7 +1,8 @@
 cache: yarn
 node_js:
+  - latest
+  - 12
   - 10
-  - 8
 language: node_js
 script: "yarn test-travis"
 before_install: yarn global add greenkeeper-lockfile@1
