@@ -17,14 +17,13 @@
     "husky": "^4.0.2",
     "istanbul": "~0.4.5",
     "lint-staged": "^10.0.3",
-    "mocha": "~6.2.0",
+    "mocha": "~7.0.1",
     "prettier": "^1.11.1"
   },
   "scripts": {
     "test": "mocha",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
-    "precommit": "lint-staged",
     "lint": "prettier --write '**/*.{js,css}'"
   },
   "lint-staged": {
@@ -48,5 +47,10 @@
   ],
   "files": [
     "index.js"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
