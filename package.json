@@ -24,7 +24,6 @@
     "test": "mocha",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
-    "precommit": "lint-staged",
     "lint": "prettier --write '**/*.{js,css}'"
   },
   "lint-staged": {
@@ -48,5 +47,10 @@
   ],
   "files": [
     "index.js"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
