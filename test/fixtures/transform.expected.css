@@ -23,3 +23,7 @@ body.hello {
 .hello .class-b {
   color: deepskyblue;
 }
+
+.hello [data-world] .d {
+  padding: 10px 20px;
+}
