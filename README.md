@@ -1,5 +1,3 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector)
-
 # postcss-prefix-selector
 
 [![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
@@ -9,6 +7,7 @@
 [![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector)
 
 > Prefix every CSS selector with a custom namespace `.a => .prefix .a`
 
