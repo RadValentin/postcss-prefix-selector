@@ -4,7 +4,7 @@
   "version": "1.7.2",
   "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
   "contributors": [
-    "Valentin Radulescu <valentin@radulescu.me> (https://valentin.io)"
+    "Valentin Radulescu <hi@valentin.io> (https://valentin.io)"
   ],
   "license": "MIT",
   "repository": "RadValentin/postcss-prefix-selector",
