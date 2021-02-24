@@ -1,4 +1,3 @@
-const path = require('path');
 module.exports = function postcssPrefixSelector(options) {
   const prefix = options.prefix;
   const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
@@ -7,7 +6,7 @@ module.exports = function postcssPrefixSelector(options) {
   return function (root) {
     if (
       root.source.input.file &&
-      ignoreFiles.includes(path.basename(root.source.input.file))
+      ignoreFiles.some((file) => root.source.input.file.includes(file))
     ) {
       return;
     }
