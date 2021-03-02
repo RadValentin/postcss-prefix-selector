@@ -1,13 +1,12 @@
 # postcss-prefix-selector
 
-[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 [![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector)
+[![Gitpod ready-to-code][gitpod-image]][gitpod-url]
 
 > Prefix every CSS selector with a custom namespace `.a => .prefix .a`
 
@@ -134,8 +133,8 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 
 [MIT](LICENSE) © 2015-2019 Jonathan Ong.
 
-[greenkeeper-image]: https://badges.greenkeeper.io/RadValentin/postcss-prefix-selector.svg
-[greenkeeper-url]: https://greenkeeper.io/
+[gitpod-image]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
+[gitpod-url]: https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/postcss-prefix-selector
 [travis-image]: https://img.shields.io/travis/RadValentin/postcss-prefix-selector.svg?style=flat-square
