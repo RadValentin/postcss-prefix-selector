@@ -81,7 +81,7 @@ it('should support an additional callback for prefix transformation', () => {
   assert.equal(out, expected);
 });
 
-it('should not set prefix a selector in ignore file', () => {
+it('should not prefix selectors in ignored file', () => {
   const out = postcss()
     .use(
       prefixer({
@@ -94,6 +94,23 @@ it('should not set prefix a selector in ignore file', () => {
     }).css;
 
   const expected = getFixtureContents('ignore-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should prefix selectors in unignored files', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        ignoreFiles: ['ignore-files.css'],
+      })
+    )
+    .process(getFixtureContents('single-selector.css'), {
+      from: 'single-selector.css',
+    }).css;
+
+  const expected = getFixtureContents('single-selector.expected.css');
 
   assert.equal(out, expected);
 });
