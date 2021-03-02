@@ -87,8 +87,6 @@ body.some-selector {
 Use it like you'd use any other PostCSS plugin. If you also have `autoprefixer` in your webpack config then make sure that `postcss-prefix-selector` is called first. This is needed to avoid running the prefixer twice on both standard selectors and vendor specific ones (ex: `@keyframes` and `@webkit-keyframes`).
 
 ```js
-const prefixer = require('postcss-prefix-selector');
-
 module: {
   rules: [{
     test: /\.css$/,
@@ -98,14 +96,16 @@ module: {
       {
         loader: require.resolve('postcss-loader'),
         options: {
-          plugins: () => [
-            prefixer({
-              prefix: '.my-prefix'
-            }),
-            autoprefixer({
-              browsers: ['last 4 versions']
-            })
-          ]
+          postcssOptions: {
+            plugins: {
+              "postcss-prefix-selector": {
+                prefix: '.my-prefix'
+              },
+              autoprefixer: {
+                browsers: ['last 4 versions']
+              }
+            }
+          }
         }
       }
     ]
