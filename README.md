@@ -118,6 +118,7 @@ module: {
 - `prefix` - This string is added before every CSS selector.
 - `exclude` - It's possible to avoid prefixing some selectors by passing an array of selectors (strings or regular expressions).
 - `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
+- `ignoreFiles` - List of ignored files for processing.
 
 ## Maintainer
 

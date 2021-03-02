@@ -7,7 +7,7 @@ it('should prefix a selector', () => {
   const out = postcss()
     .use(
       prefixer({
-        prefix: '.hello '
+        prefix: '.hello ',
       })
     )
     .process(getFixtureContents('single-selector.css')).css;
@@ -21,7 +21,7 @@ it('should prefix a group of selectors', () => {
   const out = postcss()
     .use(
       prefixer({
-        prefix: '.hello '
+        prefix: '.hello ',
       })
     )
     .process(getFixtureContents('group-selectors.css')).css;
@@ -36,7 +36,7 @@ it('should avoid prefixing excluded selectors', () => {
     .use(
       prefixer({
         prefix: '.hello ',
-        exclude: ['body', '.a *:not(.b)', /class-/]
+        exclude: ['body', '.a *:not(.b)', /class-/],
       })
     )
     .process(getFixtureContents('exclude-selectors.css')).css;
@@ -50,7 +50,7 @@ it('should skip @keyframes selectors', () => {
   const out = postcss()
     .use(
       prefixer({
-        prefix: '.hello '
+        prefix: '.hello ',
       })
     )
     .process(getFixtureContents('keyframes.css')).css;
@@ -71,12 +71,29 @@ it('should support an additional callback for prefix transformation', () => {
           }
 
           return prefixedSelector;
-        }
+        },
       })
     )
     .process(getFixtureContents('transform.css')).css;
 
   const expected = getFixtureContents('transform.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should not set prefix a selector in ignore file', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        ignoreFiles: ['ignore-files.css'],
+      })
+    )
+    .process(getFixtureContents('ignore-files.css'), {
+      from: 'ignore-files.css',
+    }).css;
+
+  const expected = getFixtureContents('ignore-files.expected.css');
 
   assert.equal(out, expected);
 });
