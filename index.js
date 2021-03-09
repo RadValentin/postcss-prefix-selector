@@ -1,12 +1,31 @@
 module.exports = function postcssPrefixSelector(options) {
-  const prefix = options.prefix;
-  const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
+  const { prefix, bethSymbol = ' ' } = options;
+  const prefixWithSymbol = prefix.trim() + bethSymbol;
   const ignoreFiles = options.ignoreFiles ? [].concat(options.ignoreFiles) : [];
+  const includeFiles = options.includeFiles
+    ? [].concat(options.includeFiles)
+    : [];
+
+  const searchSelector = (selector, searchArray) => {
+    return searchArray.some((rule) => {
+      if (rule instanceof RegExp) {
+        return rule.test(selector);
+      }
+
+      return selector === rule;
+    });
+  };
 
   return function (root) {
     if (
       root.source.input.file &&
       ignoreFiles.some((file) => root.source.input.file.includes(file))
+    ) {
+      return;
+    }
+    if (
+      root.source.input.file &&
+      includeFiles.some((file) => !root.source.input.file.includes(file))
     ) {
       return;
     }
@@ -24,7 +43,7 @@ module.exports = function postcssPrefixSelector(options) {
       }
 
       rule.selectors = rule.selectors.map((selector) => {
-        if (options.exclude && excludeSelector(selector, options.exclude)) {
+        if (options.exclude && searchSelector(selector, options.exclude)) {
           return selector;
         }
 
@@ -32,22 +51,12 @@ module.exports = function postcssPrefixSelector(options) {
           return options.transform(
             prefix,
             selector,
-            prefixWithSpace + selector
+            prefixWithSymbol + selector
           );
         }
 
-        return prefixWithSpace + selector;
+        return prefixWithSymbol + selector;
       });
     });
   };
 };
-
-function excludeSelector(selector, excludeArr) {
-  return excludeArr.some((excludeRule) => {
-    if (excludeRule instanceof RegExp) {
-      return excludeRule.test(selector);
-    }
-
-    return selector === excludeRule;
-  });
-}
