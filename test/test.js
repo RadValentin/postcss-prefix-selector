@@ -153,8 +153,10 @@ it('should use custom symbol between prefix and selector. Use empty to glue', ()
   const out = postcss()
     .use(
       prefixer({
-        prefix: '.hello ',
-        bethSymbol: '',
+        prefix: '.hello',
+        transform(prefix, selector) {
+          return prefix + selector;
+        },
       })
     )
     .process(getFixtureContents('between-symbol-selector.css')).css;
@@ -168,8 +170,7 @@ it('should use custom symbol between prefix and selector. Use "+"', () => {
   const out = postcss()
     .use(
       prefixer({
-        prefix: '.hello ',
-        bethSymbol: '+',
+        prefix: '.hello+',
       })
     )
     .process(getFixtureContents('between-symbol-plus-selector.css')).css;

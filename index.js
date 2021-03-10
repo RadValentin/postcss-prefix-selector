@@ -1,20 +1,10 @@
 module.exports = function postcssPrefixSelector(options) {
-  const { prefix, bethSymbol = ' ' } = options;
-  const prefixWithSymbol = prefix.trim() + bethSymbol;
+  const prefix = options.prefix;
+  const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
   const ignoreFiles = options.ignoreFiles ? [].concat(options.ignoreFiles) : [];
   const includeFiles = options.includeFiles
     ? [].concat(options.includeFiles)
     : [];
-
-  const searchSelector = (selector, searchArray) => {
-    return searchArray.some((rule) => {
-      if (rule instanceof RegExp) {
-        return rule.test(selector);
-      }
-
-      return selector === rule;
-    });
-  };
 
   return function (root) {
     if (
@@ -43,7 +33,7 @@ module.exports = function postcssPrefixSelector(options) {
       }
 
       rule.selectors = rule.selectors.map((selector) => {
-        if (options.exclude && searchSelector(selector, options.exclude)) {
+        if (options.exclude && excludeSelector(selector, options.exclude)) {
           return selector;
         }
 
@@ -51,12 +41,22 @@ module.exports = function postcssPrefixSelector(options) {
           return options.transform(
             prefix,
             selector,
-            prefixWithSymbol + selector
+            prefixWithSpace + selector
           );
         }
 
-        return prefixWithSymbol + selector;
+        return prefixWithSpace + selector;
       });
     });
   };
 };
+
+function excludeSelector(selector, excludeArr) {
+  return excludeArr.some((excludeRule) => {
+    if (excludeRule instanceof RegExp) {
+      return excludeRule.test(selector);
+    }
+
+    return selector === excludeRule;
+  });
+}

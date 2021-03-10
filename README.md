@@ -125,7 +125,6 @@ module: {
 - `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
 - `ignoreFiles` - List of ignored files for processing.
 - `includeFiles` - List of included files for processing.
-- `bethSymbol` - Abbr from between, in case you want glue prefix with selector or use non-space sybmol.
 
 ## Maintainer
 
