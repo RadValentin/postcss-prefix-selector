@@ -8,14 +8,16 @@ module.exports = function postcssPrefixSelector(options) {
 
   return function (root) {
     if (
+      ignoreFiles.length &&
       root.source.input.file &&
       ignoreFiles.some((file) => root.source.input.file.includes(file))
     ) {
       return;
     }
     if (
+      includeFiles.length &&
       root.source.input.file &&
-      includeFiles.some((file) => !root.source.input.file.includes(file))
+      !includeFiles.find((file) => root.source.input.file.includes(file))
     ) {
       return;
     }

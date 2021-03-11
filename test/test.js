@@ -132,6 +132,44 @@ it('should prefix selectors in included file', () => {
   assert.equal(out, expected);
 });
 
+it('should work as expected when included array is empty', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: [],
+      })
+    )
+    .process(getFixtureContents('include-files.css'), {
+      from: 'include-files.css',
+    }).css;
+
+  const expected = getFixtureContents('include-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should work as expected when included two items and mmore in array', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: [
+          'include-files.css',
+          'single-selector.css',
+          'undefined.css',
+        ],
+      })
+    )
+    .process(getFixtureContents('include-files.css'), {
+      from: 'include-files.css',
+    }).css;
+
+  const expected = getFixtureContents('include-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
 it('should not prefix selectors in unincluded files', () => {
   const out = postcss()
     .use(
@@ -162,22 +200,6 @@ it('should use custom symbol between prefix and selector. Use empty to glue', ()
     .process(getFixtureContents('between-symbol-selector.css')).css;
 
   const expected = getFixtureContents('between-symbol-selector.expected.css');
-
-  assert.equal(out, expected);
-});
-
-it('should use custom symbol between prefix and selector. Use "+"', () => {
-  const out = postcss()
-    .use(
-      prefixer({
-        prefix: '.hello+',
-      })
-    )
-    .process(getFixtureContents('between-symbol-plus-selector.css')).css;
-
-  const expected = getFixtureContents(
-    'between-symbol-plus-selector.expected.css'
-  );
 
   assert.equal(out, expected);
 });
