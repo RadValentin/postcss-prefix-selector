@@ -115,6 +115,109 @@ it('should prefix selectors in unignored files', () => {
   assert.equal(out, expected);
 });
 
+it('should prefix selectors in included file', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: ['include-files.css'],
+      })
+    )
+    .process(getFixtureContents('include-files.css'), {
+      from: 'include-files.css',
+    }).css;
+
+  const expected = getFixtureContents('include-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should work as expected when included array is empty', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: [],
+      })
+    )
+    .process(getFixtureContents('include-files.css'), {
+      from: 'include-files.css',
+    }).css;
+
+  const expected = getFixtureContents('include-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should work as expected when included two items and mmore in array', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: [
+          'include-files.css',
+          'single-selector.css',
+          'undefined.css',
+        ],
+      })
+    )
+    .process(getFixtureContents('include-files.css'), {
+      from: 'include-files.css',
+    }).css;
+
+  const expected = getFixtureContents('include-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should not prefix selectors in unincluded files', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: ['include-files.css'],
+      })
+    )
+    .process(getFixtureContents('single-selector.css'), {
+      from: 'single-selector.css',
+    }).css;
+
+  const expected = getFixtureContents('single-selector.css');
+
+  assert.equal(out, expected);
+});
+
+it('should use custom symbol between prefix and selector. Use empty to glue', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello',
+        transform(prefix, selector) {
+          return prefix + selector;
+        },
+      })
+    )
+    .process(getFixtureContents('between-symbol-selector.css')).css;
+
+  const expected = getFixtureContents('between-symbol-selector.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should prefix a selector. Use ".hello .world"', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello .world',
+      })
+    )
+    .process(getFixtureContents('single-long-selector.css')).css;
+
+  const expected = getFixtureContents('single-long-selector.expected.css');
+
+  assert.equal(out, expected);
+});
+
 function getFixtureContents(name) {
   return fs.readFileSync(`test/fixtures/${name}`, 'utf8').trim();
 }

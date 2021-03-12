@@ -98,7 +98,13 @@ module: {
           postcssOptions: {
             plugins: {
               "postcss-prefix-selector": {
-                prefix: '.my-prefix'
+                prefix: '.my-prefix',
+                transform(prefix, selector, prefixedSelector) {
+                  if (selector.match(/^(html|body)/)) {
+                    return selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
+                  }
+                  return prefixedSelector;
+                },
               },
               autoprefixer: {
                 browsers: ['last 4 versions']
@@ -118,6 +124,7 @@ module: {
 - `exclude` - It's possible to avoid prefixing some selectors by passing an array of selectors (strings or regular expressions).
 - `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
 - `ignoreFiles` - List of ignored files for processing.
+- `includeFiles` - List of included files for processing.
 
 ## Maintainer
 
