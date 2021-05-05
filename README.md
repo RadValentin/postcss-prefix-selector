@@ -138,7 +138,7 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 
 ## License
 
-[MIT](LICENSE) © 2015-2019 Jonathan Ong.
+[MIT](LICENSE) © 2015-2021 Jonathan Ong.
 
 [gitpod-image]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
 [gitpod-url]: https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector
