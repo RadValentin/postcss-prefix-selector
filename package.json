@@ -11,7 +11,7 @@
   "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
   "dependencies": {
-    "postcss": "^7.0.0"
+    "postcss": "^8.2.10"
   },
   "devDependencies": {
     "husky": "^4.0.2",
