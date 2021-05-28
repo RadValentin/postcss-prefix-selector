@@ -98,12 +98,46 @@ it('should not prefix selectors in ignored file', () => {
   assert.equal(out, expected);
 });
 
+it('should not prefix selectors in ignored file (regex)', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        ignoreFiles: [/ignore-(\w+).css/],
+      })
+    )
+    .process(getFixtureContents('ignore-files.css'), {
+      from: 'ignore-files.css',
+    }).css;
+
+  const expected = getFixtureContents('ignore-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
 it('should prefix selectors in unignored files', () => {
   const out = postcss()
     .use(
       prefixer({
         prefix: '.hello ',
         ignoreFiles: ['ignore-files.css'],
+      })
+    )
+    .process(getFixtureContents('single-selector.css'), {
+      from: 'single-selector.css',
+    }).css;
+
+  const expected = getFixtureContents('single-selector.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should prefix selectors in unignored files (regex)', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        ignoreFiles: [/ignore-(\w+).css/],
       })
     )
     .process(getFixtureContents('single-selector.css'), {
@@ -132,6 +166,23 @@ it('should prefix selectors in included file', () => {
   assert.equal(out, expected);
 });
 
+it('should prefix selectors in included file (regex)', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: [/include-(\w+).css/],
+      })
+    )
+    .process(getFixtureContents('include-files.css'), {
+      from: 'include-files.css',
+    }).css;
+
+  const expected = getFixtureContents('include-files.expected.css');
+
+  assert.equal(out, expected);
+});
+
 it('should work as expected when included array is empty', () => {
   const out = postcss()
     .use(
@@ -149,14 +200,14 @@ it('should work as expected when included array is empty', () => {
   assert.equal(out, expected);
 });
 
-it('should work as expected when included two items and mmore in array', () => {
+it('should work as expected when included two items and more in array', () => {
   const out = postcss()
     .use(
       prefixer({
         prefix: '.hello ',
         includeFiles: [
           'include-files.css',
-          'single-selector.css',
+          /single-selector.(\w+)/,
           'undefined.css',
         ],
       })
@@ -176,6 +227,23 @@ it('should not prefix selectors in unincluded files', () => {
       prefixer({
         prefix: '.hello ',
         includeFiles: ['include-files.css'],
+      })
+    )
+    .process(getFixtureContents('single-selector.css'), {
+      from: 'single-selector.css',
+    }).css;
+
+  const expected = getFixtureContents('single-selector.css');
+
+  assert.equal(out, expected);
+});
+
+it('should not prefix selectors in unincluded files (regex)', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello ',
+        includeFiles: [/include-(\w+).css/],
       })
     )
     .process(getFixtureContents('single-selector.css'), {
