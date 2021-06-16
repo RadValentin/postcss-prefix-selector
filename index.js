@@ -54,12 +54,12 @@ module.exports = function postcssPrefixSelector(options) {
 };
 
 function isFileInArray(file, arr) {
-  return arr.some((rule) => {
-    if (rule instanceof RegExp) {
-      return rule.test(file);
+  return arr.some((ruleOrString) => {
+    if (ruleOrString instanceof RegExp) {
+      return ruleOrString.test(file);
     }
 
-    return file.includes(rule);
+    return file.includes(ruleOrString);
   });
 }
 
