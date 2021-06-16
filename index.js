@@ -10,14 +10,14 @@ module.exports = function postcssPrefixSelector(options) {
     if (
       ignoreFiles.length &&
       root.source.input.file &&
-      ignoreFiles.some((file) => root.source.input.file.includes(file))
+      isFileInArray(root.source.input.file, ignoreFiles)
     ) {
       return;
     }
     if (
       includeFiles.length &&
       root.source.input.file &&
-      !includeFiles.find((file) => root.source.input.file.includes(file))
+      !isFileInArray(root.source.input.file, includeFiles)
     ) {
       return;
     }
@@ -52,6 +52,16 @@ module.exports = function postcssPrefixSelector(options) {
     });
   };
 };
+
+function isFileInArray(file, arr) {
+  return arr.some((ruleOrString) => {
+    if (ruleOrString instanceof RegExp) {
+      return ruleOrString.test(file);
+    }
+
+    return file.includes(ruleOrString);
+  });
+}
 
 function excludeSelector(selector, excludeArr) {
   return excludeArr.some((excludeRule) => {
