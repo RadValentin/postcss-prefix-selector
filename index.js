@@ -10,14 +10,14 @@ module.exports = function postcssPrefixSelector(options) {
     if (
       ignoreFiles.length &&
       root.source.input.file &&
-      ignoreFile(root.source.input.file, ignoreFiles)
+      isFileInArray(root.source.input.file, ignoreFiles)
     ) {
       return;
     }
     if (
       includeFiles.length &&
       root.source.input.file &&
-      !includeFile(root.source.input.file, includeFiles)
+      !isFileInArray(root.source.input.file, includeFiles)
     ) {
       return;
     }
@@ -53,23 +53,13 @@ module.exports = function postcssPrefixSelector(options) {
   };
 };
 
-function ignoreFile(file, ignoreArr) {
-  return ignoreArr.some((ignoreRule) => {
-    if (ignoreRule instanceof RegExp) {
-      return ignoreRule.test(file);
+function isFileInArray(file, arr) {
+  return arr.some((rule) => {
+    if (rule instanceof RegExp) {
+      return rule.test(file);
     }
 
-    return file.includes(ignoreRule);
-  });
-}
-
-function includeFile(file, includeArr) {
-  return includeArr.some((includeRule) => {
-    if (includeRule instanceof RegExp) {
-      return includeRule.test(file);
-    }
-
-    return file.includes(includeRule);
+    return file.includes(rule);
   });
 }
 
