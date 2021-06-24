@@ -120,11 +120,13 @@ module: {
 
 ## Options
 
-- `prefix` - This string is added before every CSS selector.
-- `exclude` - It's possible to avoid prefixing some selectors by passing an array of selectors (strings or regular expressions).
-- `transform` - In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method.
-- `ignoreFiles` - List of ignored files for processing. Can be an array of file names or regex.
-- `includeFiles` - List of included files for processing.Can be an array of file names or regex.
+| Name | Type | Description |
+|-|-|-|
+| `prefix` | `string` | This string is added before every CSS selector |
+| `exclude` | `string[]` or `RegExp[]` | It's possible to avoid prefixing some selectors by passing an array of selectors |
+| `transform` | `Function` | In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method |
+| `ignoreFiles` | `string[]` or `RegExp[]` | List of ignored files for processing |
+| `includeFiles` | `string[]` or `RegExp[]` | List of included files for processing |
 
 ## Maintainer
 
