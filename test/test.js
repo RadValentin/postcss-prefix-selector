@@ -2,6 +2,7 @@ const postcss = require('postcss');
 const assert = require('assert');
 const fs = require('fs');
 const prefixer = require('../index.js');
+const postcssNested = require('postcss-nested');
 
 it('should prefix a selector', () => {
   const out = postcss()
@@ -282,6 +283,17 @@ it('should prefix a selector. Use ".hello .world"', () => {
     .process(getFixtureContents('single-long-selector.css')).css;
 
   const expected = getFixtureContents('single-long-selector.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should prefix postcss nested selectors', () => {
+  const out = postcss()
+    .use(postcssNested)
+    .use(prefixer({ prefix: '.stuff' }))
+    .process(getFixtureContents('nested-selectors.postcss')).css;
+
+  const expected = getFixtureContents('nested-selectors.expected.css');
 
   assert.equal(out, expected);
 });

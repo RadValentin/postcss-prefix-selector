@@ -6,23 +6,24 @@ module.exports = function postcssPrefixSelector(options) {
     ? [].concat(options.includeFiles)
     : [];
 
-  return function (root) {
-    if (
-      ignoreFiles.length &&
-      root.source.input.file &&
-      isFileInArray(root.source.input.file, ignoreFiles)
-    ) {
-      return;
-    }
-    if (
-      includeFiles.length &&
-      root.source.input.file &&
-      !isFileInArray(root.source.input.file, includeFiles)
-    ) {
-      return;
-    }
+  return {
+    postcssPlugin: 'postcss-prefix-selector',
+    Rule(rule) {
+      if (
+        ignoreFiles.length &&
+        rule.source.input.file &&
+        isFileInArray(rule.source.input.file, ignoreFiles)
+      ) {
+        return;
+      }
+      if (
+        includeFiles.length &&
+        rule.source.input.file &&
+        !isFileInArray(rule.source.input.file, includeFiles)
+      ) {
+        return;
+      }
 
-    root.walkRules((rule) => {
       const keyframeRules = [
         'keyframes',
         '-webkit-keyframes',
@@ -49,7 +50,7 @@ module.exports = function postcssPrefixSelector(options) {
 
         return prefixWithSpace + selector;
       });
-    });
+    },
   };
 };
 
