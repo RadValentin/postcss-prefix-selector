@@ -1,0 +1,6 @@
+.stuff .foo svg {
+    display: none;
+  }
+  .stuff .foo .bar {
+    display: inline;
+  }

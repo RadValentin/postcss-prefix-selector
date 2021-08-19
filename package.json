@@ -11,13 +11,14 @@
   "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
   "dependencies": {
-    "postcss": "^8.2.10"
+    "postcss": "^8.3.6"
   },
   "devDependencies": {
     "husky": "^4.0.2",
     "istanbul": "~0.4.5",
     "lint-staged": "^10.0.3",
     "mocha": "~7.2.0",
+    "postcss-nested": "^5.0.6",
     "prettier": "^2.0.0"
   },
   "scripts": {
