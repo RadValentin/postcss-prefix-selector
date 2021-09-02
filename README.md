@@ -99,10 +99,15 @@ module: {
             plugins: {
               "postcss-prefix-selector": {
                 prefix: '.my-prefix',
-                transform(prefix, selector, prefixedSelector) {
+                transform(prefix, selector, prefixedSelector, filepath) {
                   if (selector.match(/^(html|body)/)) {
                     return selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
                   }
+                  
+                  if (filepath.match(/node_modules/)0 {
+                    return selector; // Do not prefix styles imported from node_modules
+                  }
+
                   return prefixedSelector;
                 },
               },
