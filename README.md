@@ -104,7 +104,7 @@ module: {
                     return selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
                   }
                   
-                  if (filepath.match(/node_modules/)0 {
+                  if (filepath.match(/node_modules/)) {
                     return selector; // Do not prefix styles imported from node_modules
                   }
 
