@@ -3,7 +3,6 @@
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
-[![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 [![Gitpod ready-to-code][gitpod-image]][gitpod-url]
@@ -155,8 +154,6 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 [travis-url]: https://travis-ci.org/RadValentin/postcss-prefix-selector
 [coveralls-image]: https://img.shields.io/coveralls/jonathanong/postcss-prefix-selector.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/jonathanong/postcss-prefix-selector
-[david-image]: http://img.shields.io/david/RadValentin/postcss-prefix-selector.svg?style=flat-square
-[david-url]: https://david-dm.org/RadValentin/postcss-prefix-selector
 [license-image]: http://img.shields.io/npm/l/postcss-prefix-selector.svg?style=flat-square
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/postcss-prefix-selector.svg?style=flat-square
