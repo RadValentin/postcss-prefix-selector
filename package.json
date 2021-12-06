@@ -10,8 +10,8 @@
   "repository": "RadValentin/postcss-prefix-selector",
   "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
-  "dependencies": {
-    "postcss": "^8.3.6"
+  "peerDependencies": {
+    "postcss": "7.x || 8.x"
   },
   "devDependencies": {
     "husky": "^4.0.2",
