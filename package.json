@@ -17,7 +17,7 @@
     "husky": "^4.0.2",
     "istanbul": "~0.4.5",
     "lint-staged": "^10.0.3",
-    "mocha": "~7.2.0",
+    "mocha": "^9.2.2",
     "postcss": "^8.0.0",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.0.0"
