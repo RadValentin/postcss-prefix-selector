@@ -287,16 +287,16 @@ it('should prefix a selector. Use ".hello .world"', () => {
   assert.equal(out, expected);
 });
 
-// it('should prefix postcss nested selectors', () => {
-//   const out = postcss()
-//     .use(postcssNested)
-//     .use(prefixer({ prefix: '.stuff' }))
-//     .process(getFixtureContents('nested-selectors.postcss')).css;
+it('should prefix postcss nested selectors', () => {
+  const out = postcss()
+    .use(postcssNested)
+    .use(prefixer({ prefix: '.stuff' }))
+    .process(getFixtureContents('nested-selectors.postcss')).css;
 
-//   const expected = getFixtureContents('nested-selectors.expected.css');
+  const expected = getFixtureContents('nested-selectors.expected.css');
 
-//   assert.equal(out, expected);
-// });
+  assert.equal(out, expected);
+});
 
 function getFixtureContents(name) {
   return fs.readFileSync(`test/fixtures/${name}`, 'utf8').trim();

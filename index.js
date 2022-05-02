@@ -6,23 +6,39 @@ module.exports = function postcssPrefixSelector(options) {
     ? [].concat(options.includeFiles)
     : [];
 
-  return function (root) {
-    if (
-      ignoreFiles.length &&
-      root.source.input.file &&
-      isFileInArray(root.source.input.file, ignoreFiles)
-    ) {
-      return;
-    }
-    if (
-      includeFiles.length &&
-      root.source.input.file &&
-      !isFileInArray(root.source.input.file, includeFiles)
-    ) {
-      return;
-    }
+  return {
+    postcssPlugin: 'postcss-prefix-selector',
+    Root(root, { result }) {
+      const isFileIgnored =
+        ignoreFiles.length &&
+        root.source.input.file &&
+        isFileInArray(root.source.input.file, ignoreFiles);
+      const isFileNotIncluded =
+        includeFiles.length &&
+        root.source.input.file &&
+        !isFileInArray(root.source.input.file, includeFiles);
 
-    root.walkRules((rule) => {
+      if (isFileIgnored || isFileNotIncluded) {
+        // TODO: 'skip' should be a symbol or constant
+        // NOTE: check how 'messages' works, is there some performance penalty?
+        result.messages.push('skip');
+      }
+    },
+    RootExit(root, { result }) {
+      // TODO: other plugins might be sending messages. Need to add/remove only our constant.
+      result.messages.pop();
+    },
+    Rule(rule, { result }) {
+      // NOTE: other plugins might be sending messages.
+      if (result.messages[0] === 'skip') {
+        return;
+      }
+
+      // NOTE: other plugins might be sending messages.
+      if (result.messages.length > 1) {
+        console.warn('more than one skip message found!');
+      }
+
       const keyframeRules = [
         'keyframes',
         '-webkit-keyframes',
@@ -44,13 +60,13 @@ module.exports = function postcssPrefixSelector(options) {
             prefix,
             selector,
             prefixWithSpace + selector,
-            root.source.input.file
+            rule.source.input.file
           );
         }
 
         return prefixWithSpace + selector;
       });
-    });
+    },
   };
 };
 
