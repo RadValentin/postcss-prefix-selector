@@ -66,9 +66,27 @@ it('should support an additional callback for prefix transformation', () => {
     .use(
       prefixer({
         prefix: '.hello',
-        transform(prefix, selector, prefixedSelector) {
+        transform(prefix, selector, prefixedSelector, fileName, rule) {
           if (selector === 'body') {
             return `body${prefix}`;
+          }
+
+          // Test if it can see previous nodes
+          const annotation = rule.prev();
+          if (
+            annotation.type === 'comment' &&
+            annotation.text.trim() === 'no-prefix'
+          ) {
+            return selector;
+          }
+
+          // Test if it can reach the first node through root
+          const root = rule.root();
+          if (
+            root.first.type === 'comment' &&
+            root.first.text.trim() === 'no-prefix-for:' + selector
+          ) {
+            return selector;
           }
 
           return prefixedSelector;
