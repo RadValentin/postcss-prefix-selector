@@ -1,29 +1,35 @@
-body.hello {
+/* no-prefix-for:.class-ignored-by-root */
+
+body {
   margin: 0;
   padding: 0;
 }
 
-.hello .a,
-.hello .b {
+.a,
+.b {
   color: red;
 }
 
-.hello .a *:not(.b) {
+.a *:not(.b) {
   text-transform: uppercase;
 }
 
-.hello .c {
+.c {
   font-size: 10px;
 }
 
-.hello .class-a {
+.class-a {
   color: coral;
 }
 
-.hello .class-b {
+.class-b {
   color: deepskyblue;
 }
 
-.hello [data-world] .d {
+[data-world] .d {
   padding: 10px 20px;
+}
+
+.class-ignored-by-root {
+  color: peru;
 }

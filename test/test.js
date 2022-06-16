@@ -71,16 +71,49 @@ it('should support an additional callback for prefix transformation', () => {
             return `body${prefix}`;
           }
 
-          // Test if it can see previous nodes
+          return prefixedSelector;
+        },
+      })
+    )
+    .process(getFixtureContents('transform.css')).css;
+
+  const expected = getFixtureContents('transform.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should support an additional callback for prefix transformation to check a node before the rule', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello',
+        transform(prefix, selector, prefixedSelector, fileName, rule) {
           const annotation = rule.prev();
           if (
+            typeof annotation !== 'undefined' &&
             annotation.type === 'comment' &&
             annotation.text.trim() === 'no-prefix'
           ) {
             return selector;
           }
 
-          // Test if it can reach the first node through root
+          return prefixedSelector;
+        },
+      })
+    )
+    .process(getFixtureContents('transform-by-rule.css')).css;
+
+  const expected = getFixtureContents('transform-by-rule.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should support an additional callback for prefix transformation to check a node at root', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello',
+        transform(prefix, selector, prefixedSelector, fileName, rule) {
           const root = rule.root();
           if (
             root.first.type === 'comment' &&
@@ -93,9 +126,9 @@ it('should support an additional callback for prefix transformation', () => {
         },
       })
     )
-    .process(getFixtureContents('transform.css')).css;
+    .process(getFixtureContents('transform-by-rule-root.css')).css;
 
-  const expected = getFixtureContents('transform.expected.css');
+  const expected = getFixtureContents('transform-by-rule-root.expected.css');
 
   assert.equal(out, expected);
 });

@@ -1,5 +1,3 @@
-/* no-prefix-for:.class-ignored-by-root */
-
 body {
   margin: 0;
   padding: 0;
@@ -28,13 +26,4 @@ body {
 
 [data-world] .d {
   padding: 10px 20px;
-}
-
-/* no-prefix */
-.class-ignore {
-  color: hotpink;
-}
-
-.class-ignored-by-root {
-  color: peru;
 }

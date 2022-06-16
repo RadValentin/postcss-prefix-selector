@@ -1,4 +1,6 @@
-body.hello {
+/* no-prefix-for:.class-ignored-by-root */
+
+.hello body {
   margin: 0;
   padding: 0;
 }
@@ -26,4 +28,8 @@ body.hello {
 
 .hello [data-world] .d {
   padding: 10px 20px;
+}
+
+.class-ignored-by-root {
+  color: peru;
 }
