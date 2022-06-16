@@ -66,7 +66,7 @@ it('should support an additional callback for prefix transformation', () => {
     .use(
       prefixer({
         prefix: '.hello',
-        transform(prefix, selector, prefixedSelector, fileName, rule) {
+        transform(prefix, selector, prefixedSelector, filePath, rule) {
           if (selector === 'body') {
             return `body${prefix}`;
           }
@@ -87,11 +87,10 @@ it('should support an additional callback for prefix transformation to check a n
     .use(
       prefixer({
         prefix: '.hello',
-        transform(prefix, selector, prefixedSelector, fileName, rule) {
+        transform(prefix, selector, prefixedSelector, filePath, rule) {
           const annotation = rule.prev();
           if (
-            typeof annotation !== 'undefined' &&
-            annotation.type === 'comment' &&
+            annotation?.type === 'comment' &&
             annotation.text.trim() === 'no-prefix'
           ) {
             return selector;
@@ -113,7 +112,7 @@ it('should support an additional callback for prefix transformation to check a n
     .use(
       prefixer({
         prefix: '.hello',
-        transform(prefix, selector, prefixedSelector, fileName, rule) {
+        transform(prefix, selector, prefixedSelector, filePath, rule) {
           const root = rule.root();
           if (
             root.first.type === 'comment' &&
