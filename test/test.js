@@ -66,7 +66,7 @@ it('should support an additional callback for prefix transformation', () => {
     .use(
       prefixer({
         prefix: '.hello',
-        transform(prefix, selector, prefixedSelector) {
+        transform(prefix, selector, prefixedSelector, filePath, rule) {
           if (selector === 'body') {
             return `body${prefix}`;
           }
@@ -78,6 +78,56 @@ it('should support an additional callback for prefix transformation', () => {
     .process(getFixtureContents('transform.css')).css;
 
   const expected = getFixtureContents('transform.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should support an additional callback for prefix transformation to check a node before the rule', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello',
+        transform(prefix, selector, prefixedSelector, filePath, rule) {
+          const annotation = rule.prev();
+          if (
+            annotation?.type === 'comment' &&
+            annotation.text.trim() === 'no-prefix'
+          ) {
+            return selector;
+          }
+
+          return prefixedSelector;
+        },
+      })
+    )
+    .process(getFixtureContents('transform-by-rule.css')).css;
+
+  const expected = getFixtureContents('transform-by-rule.expected.css');
+
+  assert.equal(out, expected);
+});
+
+it('should support an additional callback for prefix transformation to check a node at root', () => {
+  const out = postcss()
+    .use(
+      prefixer({
+        prefix: '.hello',
+        transform(prefix, selector, prefixedSelector, filePath, rule) {
+          const root = rule.root();
+          if (
+            root.first.type === 'comment' &&
+            root.first.text.trim() === 'no-prefix-for:' + selector
+          ) {
+            return selector;
+          }
+
+          return prefixedSelector;
+        },
+      })
+    )
+    .process(getFixtureContents('transform-by-rule-root.css')).css;
+
+  const expected = getFixtureContents('transform-by-rule-root.expected.css');
 
   assert.equal(out, expected);
 });

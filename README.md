@@ -38,7 +38,7 @@ const out = postcss().use(prefixer({
   exclude: ['.c'],
 
   // Optional transform callback for case-by-case overrides
-  transform: function (prefix, selector, prefixedSelector) {
+  transform: function (prefix, selector, prefixedSelector, filePath, rule) {
     if (selector === 'body') {
       return 'body' + prefix;
     } else {
@@ -98,13 +98,18 @@ module: {
             plugins: {
               "postcss-prefix-selector": {
                 prefix: '.my-prefix',
-                transform(prefix, selector, prefixedSelector, filepath) {
+                transform(prefix, selector, prefixedSelector, filePath, rule) {
                   if (selector.match(/^(html|body)/)) {
                     return selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
                   }
                   
-                  if (filepath.match(/node_modules/)) {
+                  if (filePath.match(/node_modules/)) {
                     return selector; // Do not prefix styles imported from node_modules
+                  }
+                  
+                  const annotation = rule.prev();
+                  if (annotation?.type === 'comment' && annotation.text.trim() === 'no-prefix') {
+                    return selector; // Do not prefix style rules that are preceded by: /* no-prefix */
                   }
 
                   return prefixedSelector;

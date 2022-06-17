@@ -44,7 +44,8 @@ module.exports = function postcssPrefixSelector(options) {
             prefix,
             selector,
             prefixWithSpace + selector,
-            root.source.input.file
+            root.source.input.file,
+            rule
           );
         }
 
