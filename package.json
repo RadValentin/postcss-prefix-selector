@@ -1,7 +1,7 @@
 {
   "name": "postcss-prefix-selector",
   "description": "Prefix all CSS rules with a selector",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
   "contributors": [
     "Valentin Radulescu <hi@valentin.io> (https://valentin.io)"
@@ -29,7 +29,9 @@
     "lint": "prettier --write '**/*.{js,css}'"
   },
   "lint-staged": {
-    "*.js": ["prettier --write"]
+    "*.js": [
+      "prettier --write"
+    ]
   },
   "prettier": {
     "printWidth": 80,
