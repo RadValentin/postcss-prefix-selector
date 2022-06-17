@@ -29,10 +29,7 @@
     "lint": "prettier --write '**/*.{js,css}'"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write"]
   },
   "prettier": {
     "printWidth": 80,
