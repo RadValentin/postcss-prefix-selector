@@ -14,6 +14,7 @@
 - [Install](#install)
 - [Usage with PostCSS](#usage-with-postcss)
 - [Usage with Webpack](#usage-with-webpack)
+- [Usage with Vite](#usage-with-vite)
 - [Options](#options)
 - [Maintainer](#maintainer)
 - [Contribute](#contribute)
@@ -125,6 +126,50 @@ module: {
     ]
   }]
 }
+```
+
+
+## Usage with Vite
+
+Following the same way of Webpack but for Vite:
+
+```js
+import prefixer from 'postcss-prefix-selector';
+import autoprefixer from 'autoprefixer';
+
+...
+
+export default defineConfig({
+...
+  css: {
+    postcss: {
+      plugins: [
+        prefixer({
+          prefix: '.my-prefix',
+          transform(prefix, selector, prefixedSelector, filePath, rule) {
+            if (selector.match(/^(html|body)/)) {
+              return selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
+            }
+
+            if (filePath.match(/node_modules/)) {
+              return selector; // Do not prefix styles imported from node_modules
+            }
+
+            const annotation = rule.prev();
+            if (annotation?.type === 'comment' && annotation.text.trim() === 'no-prefix') {
+              return selector; // Do not prefix style rules that are preceded by: /* no-prefix */
+            }
+
+            return prefixedSelector;
+          },
+        }),
+
+        autoprefixer({}) // add options if needed
+      ],
+    }
+  },
+...
+});  
 ```
 
 ## Options
