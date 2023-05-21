@@ -1,7 +1,6 @@
 # postcss-prefix-selector
 
 [![NPM version][npm-image]][npm-url]
-[![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
@@ -200,8 +199,6 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 [gitpod-url]: https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector
 [npm-image]: https://img.shields.io/npm/v/postcss-prefix-selector.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/postcss-prefix-selector
-[travis-image]: https://img.shields.io/travis/RadValentin/postcss-prefix-selector.svg?style=flat-square
-[travis-url]: https://travis-ci.org/RadValentin/postcss-prefix-selector
 [coveralls-image]: https://img.shields.io/coveralls/jonathanong/postcss-prefix-selector.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/jonathanong/postcss-prefix-selector
 [license-image]: http://img.shields.io/npm/l/postcss-prefix-selector.svg?style=flat-square
