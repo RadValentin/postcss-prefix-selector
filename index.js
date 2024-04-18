@@ -28,6 +28,7 @@ module.exports = function postcssPrefixSelector(options) {
         '-webkit-keyframes',
         '-moz-keyframes',
         '-o-keyframes',
+        '-ms-keyframes',
       ];
 
       if (rule.parent && keyframeRules.includes(rule.parent.name)) {
