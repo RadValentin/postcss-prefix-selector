@@ -7,7 +7,10 @@
     "Valentin Radulescu <hi@valentin.io> (https://valentin.io)"
   ],
   "license": "MIT",
-  "repository": "RadValentin/postcss-prefix-selector",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RadValentin/postcss-prefix-selector.git"
+  },
   "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
   "devDependencies": {
