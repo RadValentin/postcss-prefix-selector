@@ -1,4 +1,4 @@
-module.exports = function postcssPrefixSelector(options) {
+const prefixPlugin = (options = {}) => {
   const prefix = options.prefix;
   const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
   const ignoreFiles = options.ignoreFiles ? [].concat(options.ignoreFiles) : [];
@@ -6,55 +6,55 @@ module.exports = function postcssPrefixSelector(options) {
     ? [].concat(options.includeFiles)
     : [];
 
-  return function (root) {
-    if (
-      ignoreFiles.length &&
-      root.source.input.file &&
-      isFileInArray(root.source.input.file, ignoreFiles)
-    ) {
-      return;
-    }
-    if (
-      includeFiles.length &&
-      root.source.input.file &&
-      !isFileInArray(root.source.input.file, includeFiles)
-    ) {
-      return;
-    }
+  return {
+    postcssPlugin: 'postcss-prefix-selector',
+    prepare(result) { 
+      const root = result.root;
+      const file = root.source.input.file;
 
-    root.walkRules((rule) => {
-      const keyframeRules = [
-        'keyframes',
-        '-webkit-keyframes',
-        '-moz-keyframes',
-        '-o-keyframes',
-        '-ms-keyframes',
-      ];
-
-      if (rule.parent && keyframeRules.includes(rule.parent.name)) {
+      // Skip ignored or non included files
+      if (ignoreFiles.length && file && isFileInArray(file, ignoreFiles)) {
+        return;
+      } else if (includeFiles.length && file && !isFileInArray(file, includeFiles)) {
         return;
       }
 
-      rule.selectors = rule.selectors.map((selector) => {
-        if (options.exclude && excludeSelector(selector, options.exclude)) {
-          return selector;
-        }
+      return {
+        Rule(rule, { result }) {
+          const keyframeRules = [
+            'keyframes',
+            '-webkit-keyframes',
+            '-moz-keyframes',
+            '-o-keyframes',
+            '-ms-keyframes',
+          ];
 
-        if (options.transform) {
-          return options.transform(
-            prefix,
-            selector,
-            prefixWithSpace + selector,
-            root.source.input.file,
-            rule
-          );
-        }
+          if (rule.parent && keyframeRules.includes(rule.parent.name)) {
+            return;
+          }
 
-        return prefixWithSpace + selector;
-      });
-    });
-  };
-};
+          rule.selectors = rule.selectors.map((selector) => {
+            if (options.exclude && excludeSelector(selector, options.exclude)) {
+              return selector;
+            }
+
+            if (options.transform) {
+              return options.transform(
+                prefix,
+                selector,
+                prefixWithSpace + selector,
+                root.source.input.file,
+                rule
+              );
+            }
+
+            return prefixWithSpace + selector;
+          });
+        }
+      };
+    }
+  }
+}
 
 function isFileInArray(file, arr) {
   return arr.some((ruleOrString) => {
@@ -74,4 +74,8 @@ function excludeSelector(selector, excludeArr) {
 
     return selector === excludeRule;
   });
-}
+};
+
+prefixPlugin.postcss = true
+
+module.exports = prefixPlugin;
