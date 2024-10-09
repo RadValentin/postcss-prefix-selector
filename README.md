@@ -11,6 +11,7 @@
 ## Table of Contents
 
 - [Install](#install)
+- [How it works](#how-it-works)
 - [Usage with PostCSS](#usage-with-postcss)
 - [Usage with Webpack](#usage-with-webpack)
 - [Usage with Vite](#usage-with-vite)
@@ -23,6 +24,28 @@
 
 ```console
 $ npm install postcss-prefix-selector
+```
+
+## How it works
+
+A prefix is added before most selectors. Below is an example of how CSS will be transformed by adding a prefix called `.namespace`.
+
+```css
+/* Input */
+div { background-color: red; }
+
+/* Output */
+.namespace div { background-color: red; }
+```
+
+Please note that global selectors (`html`, `body`, `:root`) cannot be prefixed so instead they will be replaced with the prefix.
+
+```css
+/* Input */
+:root { --bs-blue:#0d6efd; }
+
+/* Output */
+.namespace { --bs-blue:#0d6efd; }
 ```
 
 ## Usage with PostCSS
