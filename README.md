@@ -11,7 +11,6 @@
 ## Table of Contents
 
 - [Install](#install)
-- [How it works](#how-it-works)
 - [Usage with PostCSS](#usage-with-postcss)
 - [Usage with Webpack](#usage-with-webpack)
 - [Usage with Vite](#usage-with-vite)
@@ -26,16 +25,40 @@
 $ npm install postcss-prefix-selector
 ```
 
-## How it works
+## Usage with PostCSS
 
 A prefix is added before most selectors. Below is an example of how CSS will be transformed by adding a prefix called `.namespace`.
 
+```js
+const prefixer = require('postcss-prefix-selector')
+
+// css to be processed
+const css = fs.readFileSync("input.css", "utf8")
+
+const out = postcss().use(prefixer({
+  prefix: '.namespace',
+  exclude: ['.c'],
+})).process(css).css
+```
+
 ```css
 /* Input */
-div { background-color: red; }
+.a, .b {
+  color: aqua;
+}
+
+.c {
+  color: coral;
+}
 
 /* Output */
-.namespace div { background-color: red; }
+.namespace .a, .namespace .b {
+  color: aqua;
+}
+
+.c {
+  color: coral;
+}
 ```
 
 Please note that global selectors (`html`, `body`, `:root`) cannot be prefixed so instead they will be replaced with the prefix. This behaviour can be disabled with the `skipGlobalSelectors` option.
@@ -52,18 +75,11 @@ body { margin: 0; }
 .namespace { margin: 0; }
 ```
 
-## Usage with PostCSS
+It's also possible to customize the way prefixing is done by defining a transform function:
 
 ```js
-const prefixer = require('postcss-prefix-selector')
-
-// css to be processed
-const css = fs.readFileSync("input.css", "utf8")
-
 const out = postcss().use(prefixer({
-  prefix: '.some-selector',
-  exclude: ['.c'],
-
+  prefix: '.namespace',
   // Optional transform callback for case-by-case overrides
   transform: function (prefix, selector, prefixedSelector, filePath, rule) {
     if (selector === 'body') {
@@ -75,35 +91,15 @@ const out = postcss().use(prefixer({
 })).process(css).css
 ```
 
-Using the options above and the CSS below...
-
 ```css
+/* Input */
 body {
   background: red;
 }
 
-.a, .b {
-  color: aqua;
-}
-
-.c {
-  color: coral;
-}
-```
-
-You will get the following output
-
-```css
-body.some-selector {
+/* Output */
+body.namespace {
   background: red;
-}
-
-.some-selector .a, .some-selector .b {
-  color: aqua;
-}
-
-.c {
-  color: coral;
 }
 ```
 
@@ -221,7 +217,7 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 
 ## License
 
-[MIT](LICENSE) © 2015-2022 Jonathan Ong.
+[MIT](LICENSE) © 2015-2024 Jonathan Ong.
 
 [gitpod-image]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
 [gitpod-url]: https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector
