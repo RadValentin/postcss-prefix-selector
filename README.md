@@ -38,14 +38,18 @@ div { background-color: red; }
 .namespace div { background-color: red; }
 ```
 
-Please note that global selectors (`html`, `body`, `:root`) cannot be prefixed so instead they will be replaced with the prefix.
+Please note that global selectors (`html`, `body`, `:root`) cannot be prefixed so instead they will be replaced with the prefix. This behaviour can be disabled with the `skipGlobalSelectors` option.
 
 ```css
 /* Input */
 :root { --bs-blue:#0d6efd; }
+html { padding: 0; }
+body { margin: 0; }
 
 /* Output */
 .namespace { --bs-blue:#0d6efd; }
+.namespace { padding: 0; }
+.namespace { margin: 0; }
 ```
 
 ## Usage with PostCSS
@@ -203,6 +207,7 @@ export default defineConfig({
 | `transform` | `Function` | In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method |
 | `ignoreFiles` | `string[]` or `RegExp[]` | List of ignored files for processing |
 | `includeFiles` | `string[]` or `RegExp[]` | List of included files for processing |
+| `skipGlobalSelectors` | `boolean` |  When enabled, global selectors (`html`, `body`, `root`) won't be modified by the prefixer. Default: `false`. | 
 
 ## Maintainer
 

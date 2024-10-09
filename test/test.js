@@ -366,6 +366,17 @@ it('should replace :root, body and html with the prefix', () => {
   assert.equal(out, expected);
 });
 
+it('should skip global selectors when option is enabled', () => {
+  const out = postcss()
+  .use(prefixer({ 
+    prefix: '.prefix',
+    skipGlobalSelectors: true
+  })).process(getFixtureContents('global-selectors.css')).css;
+
+  const expected = getFixtureContents('global-selectors.css');
+  assert.equal(out, expected);
+});
+
 function getFixtureContents(name) {
   return fs.readFileSync(`test/fixtures/${name}`, 'utf8').trim();
 }
