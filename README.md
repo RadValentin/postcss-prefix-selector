@@ -27,6 +27,8 @@ $ npm install postcss-prefix-selector
 
 ## Usage with PostCSS
 
+A prefix is added before most selectors. Below is an example of how CSS will be transformed by adding a prefix called `.namespace`.
+
 ```js
 const prefixer = require('postcss-prefix-selector')
 
@@ -34,9 +36,50 @@ const prefixer = require('postcss-prefix-selector')
 const css = fs.readFileSync("input.css", "utf8")
 
 const out = postcss().use(prefixer({
-  prefix: '.some-selector',
+  prefix: '.namespace',
   exclude: ['.c'],
+})).process(css).css
+```
 
+```css
+/* Input */
+.a, .b {
+  color: aqua;
+}
+
+.c {
+  color: coral;
+}
+
+/* Output */
+.namespace .a, .namespace .b {
+  color: aqua;
+}
+
+.c {
+  color: coral;
+}
+```
+
+Please note that global selectors (`html`, `body`, `:root`) cannot be prefixed so instead they will be replaced with the prefix. This behaviour can be disabled with the `skipGlobalSelectors` option.
+
+```css
+/* Input */
+:root { --bs-blue:#0d6efd; }
+html { padding: 0; }
+body { margin: 0; }
+
+/* Output */
+.namespace { --bs-blue:#0d6efd; }
+.namespace { padding: 0; }
+.namespace { margin: 0; }
+```
+
+It's also possible to customize the way prefixing is done by defining a transform function:
+
+```js
+const out = postcss().use(prefixer({
+  prefix: '.namespace',
   // Optional transform callback for case-by-case overrides
   transform: function (prefix, selector, prefixedSelector, filePath, rule) {
     if (selector === 'body') {
@@ -48,35 +91,15 @@ const out = postcss().use(prefixer({
 })).process(css).css
 ```
 
-Using the options above and the CSS below...
-
 ```css
+/* Input */
 body {
   background: red;
 }
 
-.a, .b {
-  color: aqua;
-}
-
-.c {
-  color: coral;
-}
-```
-
-You will get the following output
-
-```css
-body.some-selector {
+/* Output */
+body.namespace {
   background: red;
-}
-
-.some-selector .a, .some-selector .b {
-  color: aqua;
-}
-
-.c {
-  color: coral;
 }
 ```
 
@@ -180,6 +203,7 @@ export default defineConfig({
 | `transform` | `Function` | In cases where you may want to use the prefix differently for different selectors, it is possible to pass in a custom transform method |
 | `ignoreFiles` | `string[]` or `RegExp[]` | List of ignored files for processing |
 | `includeFiles` | `string[]` or `RegExp[]` | List of included files for processing |
+| `skipGlobalSelectors` | `boolean` |  When enabled, global selectors (`html`, `body`, `root`) won't be modified by the prefixer. Default: `false`. | 
 
 ## Maintainer
 
@@ -193,7 +217,7 @@ This project uses Mocha. If you submit a PR, please add appropriate tests and ma
 
 ## License
 
-[MIT](LICENSE) © 2015-2022 Jonathan Ong.
+[MIT](LICENSE) © 2015-2024 Jonathan Ong.
 
 [gitpod-image]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
 [gitpod-url]: https://gitpod.io/#https://github.com/RadValentin/postcss-prefix-selector

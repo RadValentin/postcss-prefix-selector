@@ -48,6 +48,15 @@ const prefixPlugin = (options = {}) => {
               );
             }
 
+            // replace :root, body, html with the prefix
+            if ([':root', 'body', 'html'].some(globalSel => selector.startsWith(globalSel))) {
+              if (options.skipGlobalSelectors) {
+                return selector;
+              }
+
+              return selector.replace(/(html\s+body|:root\s+body|html|:root|body)/gm, prefix);
+            }
+
             return prefixWithSpace + selector;
           });
         }

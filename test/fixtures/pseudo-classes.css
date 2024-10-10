@@ -1,0 +1,31 @@
+:first-child {
+  color: pink;
+}
+
+:hover {
+  color: blue;
+}
+
+:active {
+  color: red;
+}
+
+* {
+  background-color: red;
+}
+
+::first-letter {
+  color: pink;
+}
+
+::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  position: absolute;
+}
+
+#wow {
+  color: yellow;
+}

@@ -1,0 +1,19 @@
+html {
+  margin: 0;
+}
+
+body {
+  padding: 0;
+}
+
+html body div {
+  color: blue;
+}
+
+:root {
+  --bs-blue:#0d6efd;
+}
+
+:root .a {
+  --bs-green: #bada55;
+}

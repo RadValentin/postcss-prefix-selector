@@ -1,0 +1,31 @@
+.prefix :first-child {
+  color: pink;
+}
+
+.prefix :hover {
+  color: blue;
+}
+
+.prefix :active {
+  color: red;
+}
+
+.prefix * {
+  background-color: red;
+}
+
+.prefix ::first-letter {
+  color: pink;
+}
+
+.prefix ::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  position: absolute;
+}
+
+.prefix #wow {
+  color: yellow;
+}

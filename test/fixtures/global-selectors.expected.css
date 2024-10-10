@@ -1,0 +1,19 @@
+.prefix {
+  margin: 0;
+}
+
+.prefix {
+  padding: 0;
+}
+
+.prefix div {
+  color: blue;
+}
+
+.prefix {
+  --bs-blue:#0d6efd;
+}
+
+.prefix .a {
+  --bs-green: #bada55;
+}
