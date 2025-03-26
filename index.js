@@ -1,3 +1,13 @@
+/**
+ * @type {import('postcss').PluginCreator<{
+ *  prefix: string,
+ *  exclude?: (string|RegExp)[],
+ *  transform?: (prefix: string, selector: string, prefixedSelector: string, filePath: string, rule: import('postcss').Rule) => void
+ *  ignoreFiles?: (string|RegExp)[],
+ *  includeFiles?: (string|RegExp)[],
+ *  skipGlobalSelectors?: boolean
+ * }>}
+ */
 const prefixPlugin = (options = {}) => {
   const prefix = options.prefix;
   const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
