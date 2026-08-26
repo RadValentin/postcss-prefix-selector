@@ -2,7 +2,7 @@ const postcss = require('postcss');
 const assert = require('assert');
 const fs = require('fs');
 const prefixer = require('../index.js');
-const postcssNested = require('postcss-nested');
+const postcssNested = require('postcss-nested').default;
 
 it('should prefix a selector', () => {
   const out = postcss()
