@@ -19,7 +19,7 @@
     "mocha": "^11.8.0",
     "nyc": "^18.0.0",
     "postcss": "^8.0.0",
-    "postcss-nested": "^8.0.1",
+    "postcss-nested": "^7.0.2",
     "prettier": "^3.9.6"
   },
   "peerDependencies": {
