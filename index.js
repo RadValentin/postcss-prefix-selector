@@ -12,13 +12,11 @@ const prefixPlugin = (options = {}) => {
   const prefix = options.prefix;
   const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
   const ignoreFiles = options.ignoreFiles ? [].concat(options.ignoreFiles) : [];
-  const includeFiles = options.includeFiles
-    ? [].concat(options.includeFiles)
-    : [];
+  const includeFiles = options.includeFiles ? [].concat(options.includeFiles) : [];
 
   return {
     postcssPlugin: 'postcss-prefix-selector',
-    prepare(result) { 
+    prepare(result) {
       const root = result.root;
       const file = root.source.input.file;
 
@@ -43,7 +41,7 @@ const prefixPlugin = (options = {}) => {
             return;
           }
 
-          rule.selectors = rule.selectors.map((selector) => {
+          rule.selectors = rule.selectors.map(selector => {
             if (options.exclude && excludeSelector(selector, options.exclude)) {
               return selector;
             }
@@ -69,14 +67,14 @@ const prefixPlugin = (options = {}) => {
 
             return prefixWithSpace + selector;
           });
-        }
+        },
       };
-    }
-  }
-}
+    },
+  };
+};
 
 function isFileInArray(file, arr) {
-  return arr.some((ruleOrString) => {
+  return arr.some(ruleOrString => {
     if (ruleOrString instanceof RegExp) {
       return ruleOrString.test(file);
     }
@@ -86,15 +84,15 @@ function isFileInArray(file, arr) {
 }
 
 function excludeSelector(selector, excludeArr) {
-  return excludeArr.some((excludeRule) => {
+  return excludeArr.some(excludeRule => {
     if (excludeRule instanceof RegExp) {
       return excludeRule.test(selector);
     }
 
     return selector === excludeRule;
   });
-};
+}
 
-prefixPlugin.postcss = true
+prefixPlugin.postcss = true;
 
 module.exports = prefixPlugin;
