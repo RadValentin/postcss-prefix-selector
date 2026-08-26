@@ -89,10 +89,7 @@ it('should support an additional callback for prefix transformation to check a n
         prefix: '.hello',
         transform(prefix, selector, prefixedSelector, filePath, rule) {
           const annotation = rule.prev();
-          if (
-            annotation?.type === 'comment' &&
-            annotation.text.trim() === 'no-prefix'
-          ) {
+          if (annotation?.type === 'comment' && annotation.text.trim() === 'no-prefix') {
             return selector;
           }
 
@@ -256,11 +253,7 @@ it('should work as expected when included two items and more in array', () => {
     .use(
       prefixer({
         prefix: '.hello ',
-        includeFiles: [
-          'include-files.css',
-          /single-selector.(\w+)/,
-          'undefined.css',
-        ],
+        includeFiles: ['include-files.css', /single-selector.(\w+)/, 'undefined.css'],
       })
     )
     .process(getFixtureContents('include-files.css'), {
@@ -350,8 +343,8 @@ it('should prefix postcss nested selectors', () => {
 
 it('should prefix pseudo-classes', () => {
   const out = postcss()
-  .use(prefixer({ prefix: '.prefix' }))
-  .process(getFixtureContents('pseudo-classes.css')).css;
+    .use(prefixer({ prefix: '.prefix' }))
+    .process(getFixtureContents('pseudo-classes.css')).css;
 
   const expected = getFixtureContents('pseudo-classes.expected.css');
   assert.equal(out, expected);
@@ -359,8 +352,8 @@ it('should prefix pseudo-classes', () => {
 
 it('should replace :root, body and html with the prefix', () => {
   const out = postcss()
-  .use(prefixer({ prefix: '.prefix' }))
-  .process(getFixtureContents('global-selectors.css')).css;
+    .use(prefixer({ prefix: '.prefix' }))
+    .process(getFixtureContents('global-selectors.css')).css;
 
   const expected = getFixtureContents('global-selectors.expected.css');
   assert.equal(out, expected);
@@ -368,10 +361,13 @@ it('should replace :root, body and html with the prefix', () => {
 
 it('should skip global selectors when option is enabled', () => {
   const out = postcss()
-  .use(prefixer({ 
-    prefix: '.prefix',
-    skipGlobalSelectors: true
-  })).process(getFixtureContents('global-selectors.css')).css;
+    .use(
+      prefixer({
+        prefix: '.prefix',
+        skipGlobalSelectors: true,
+      })
+    )
+    .process(getFixtureContents('global-selectors.css')).css;
 
   const expected = getFixtureContents('global-selectors.css');
   assert.equal(out, expected);

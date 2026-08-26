@@ -14,13 +14,15 @@
   "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
   "devDependencies": {
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.1",
-    "mocha": "^11.7.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "mocha": "^11.8.0",
+    "mocha-junit-reporter": "^2.2.1",
+    "mocha-multi": "^1.1.7",
     "nyc": "^18.0.0",
     "postcss": "^8.0.0",
-    "postcss-nested": "^5.0.6",
-    "prettier": "^2.0.0"
+    "postcss-nested": "^7.0.2",
+    "prettier": "^3.9.6"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"
@@ -28,16 +30,18 @@
   "scripts": {
     "test": "mocha",
     "test-cov": "nyc mocha",
-    "lint": "prettier --write '**/*.{js,css}'"
+    "lint": "prettier --write '**/*.{js,css}'",
+    "prepare": "husky"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write"
-    ]
+    "*.{js,css}": "prettier --write"
   },
   "prettier": {
-    "printWidth": 80,
-    "singleQuote": true
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "endOfLine": "auto",
+    "arrowParens": "avoid"
   },
   "keywords": [
     "postcss",
@@ -50,10 +54,5 @@
   ],
   "files": [
     "index.js"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  }
+  ]
 }
