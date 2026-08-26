@@ -15,9 +15,9 @@
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
   "devDependencies": {
     "husky": "^8.0.3",
-    "istanbul": "~0.4.5",
     "lint-staged": "^13.2.1",
     "mocha": "^11.7.5",
+    "nyc": "^18.0.0",
     "postcss": "^8.0.0",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.0.0"
@@ -27,8 +27,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
+    "test-cov": "nyc mocha",
     "lint": "prettier --write '**/*.{js,css}'"
   },
   "lint-staged": {
