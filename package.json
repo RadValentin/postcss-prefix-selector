@@ -32,9 +32,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write"
-    ]
+    "*.{js,css}": "prettier --write"
   },
   "prettier": {
     "printWidth": 80,
