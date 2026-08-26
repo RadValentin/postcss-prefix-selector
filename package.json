@@ -28,7 +28,8 @@
   "scripts": {
     "test": "mocha",
     "test-cov": "nyc mocha",
-    "lint": "prettier --write '**/*.{js,css}'"
+    "lint": "prettier --write '**/*.{js,css}'",
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.js": [
