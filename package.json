@@ -35,8 +35,11 @@
     "*.{js,css}": "prettier --write"
   },
   "prettier": {
-    "printWidth": 80,
-    "singleQuote": true
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "endOfLine": "auto",
+    "arrowParens": "avoid"
   },
   "keywords": [
     "postcss",
