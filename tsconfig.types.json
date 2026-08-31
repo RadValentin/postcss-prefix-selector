@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": ".",
+    "lib": ["es2018"],
+    "skipLibCheck": true
+  },
+  "files": ["index.js"]
+}
