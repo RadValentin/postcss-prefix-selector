@@ -1,10 +1,10 @@
 /**
  * @type {import('postcss').PluginCreator<{
  *  prefix: string,
- *  exclude?: (string|RegExp)[],
- *  transform?: (prefix: string, selector: string, prefixedSelector: string, filePath: string, rule: import('postcss').Rule) => void
- *  ignoreFiles?: (string|RegExp)[],
- *  includeFiles?: (string|RegExp)[],
+ *  exclude?: ReadonlyArray<string | RegExp>,
+ *  transform?: (prefix: string, selector: string, prefixedSelector: string, filePath: string | undefined, rule: import('postcss').Rule) => string
+ *  ignoreFiles?: ReadonlyArray<string|RegExp>,
+ *  includeFiles?: ReadonlyArray<string|RegExp>,
  *  skipGlobalSelectors?: boolean
  * }>}
  */
