@@ -22,7 +22,8 @@
     "nyc": "^18.0.0",
     "postcss": "^8.0.0",
     "postcss-nested": "^7.0.2",
-    "prettier": "^3.9.6"
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.2"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"
@@ -30,7 +31,9 @@
   "scripts": {
     "test": "mocha",
     "test-cov": "nyc mocha",
+    "build:types": "tsc --project tsconfig.types.json",
     "lint": "prettier --write '**/*.{js,css}'",
+    "prepack": "npm run build:types",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -52,7 +55,9 @@
     "selector",
     "plugin"
   ],
+  "types": "index.d.ts",
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ]
 }
