@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "test-cov": "nyc mocha",
+    "test:cov": "nyc mocha",
     "build:types": "tsc --project tsconfig.types.json",
     "lint": "prettier --write '**/*.{js,css}'",
     "prepack": "npm run build:types",
