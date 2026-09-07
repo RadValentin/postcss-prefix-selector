@@ -4,6 +4,20 @@ const fs = require('fs');
 const prefixer = require('../index.js');
 const postcssNested = require('postcss-nested');
 
+it('should not make changes if no options are set', function () {
+  const out = postcss().use(prefixer()).process(getFixtureContents('single-selector.css')).css;
+  const expected = getFixtureContents('single-selector.css');
+
+  assert.equal(out, expected);
+});
+
+it('should not make changes if no prefix is set', function () {
+  const out = postcss().use(prefixer({})).process(getFixtureContents('single-selector.css')).css;
+  const expected = getFixtureContents('single-selector.css');
+
+  assert.equal(out, expected);
+});
+
 it('should prefix a selector', () => {
   const out = postcss()
     .use(

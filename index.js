@@ -8,7 +8,14 @@
  *  skipGlobalSelectors?: boolean
  * }>}
  */
-const prefixPlugin = (options = {}) => {
+const prefixPlugin = options => {
+  // If options isn't set or prefix not provided, do nothing.
+  if (!options || !isObj(options) || !options.prefix) {
+    return {
+      postcssPlugin: 'postcss-prefix-selector',
+    };
+  }
+
   const prefix = options.prefix;
   const prefixWithSpace = /\s+$/.test(prefix) ? prefix : `${prefix} `;
   const ignoreFiles = options.ignoreFiles ? [].concat(options.ignoreFiles) : [];
@@ -91,6 +98,10 @@ function excludeSelector(selector, excludeArr) {
 
     return selector === excludeRule;
   });
+}
+
+function isObj(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
 prefixPlugin.postcss = true;
