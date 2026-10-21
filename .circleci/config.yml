@@ -10,7 +10,7 @@ workflows:
       - node/test:
           executor:
             name: node/default
-            tag: '22.22.1'
+            tag: '24.22.0'
           run-command: test:ci
           test-results-for: other
           test-results-path: ~/project/test-results
