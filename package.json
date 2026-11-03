@@ -13,6 +13,9 @@
   },
   "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
