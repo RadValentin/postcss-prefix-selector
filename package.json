@@ -14,7 +14,14 @@
   "bugs": "https://github.com/RadValentin/postcss-prefix-selector/issues",
   "homepage": "https://github.com/RadValentin/postcss-prefix-selector",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "^10 || ^12 || >=14"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=22.22.1",
+      "onFail": "error"
+    }
   },
   "devDependencies": {
     "husky": "^9.1.7",
